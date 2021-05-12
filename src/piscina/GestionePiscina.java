@@ -1,40 +1,43 @@
 package piscina;
 
+
 import java.util.*;
-import java.io;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class GestionePiscina {
 	static Scanner input = new Scanner(System.in);
+
 	// VETTORE INGRESSI
-	Vector<String> ingressi = new Vector<String>();
+	Vector<Ingressi> ingressi = new Vector<Ingressi>();
 
 	public static void aggiungiIngresso() {
-
+		
 		System.out.println("Stai aggiungendo un nuovo ingresso");
+		Date data = Ingressi.setData();
 
-		System.out.println("Inserisci la data dell'accesso in formato DD/MM/YYYY");
-		// l'utente inserisce la data;
-		String d = input.nextLine();
-
-		// inserire un controllo sulla correttezza della data (try catch)
-
-		DateTimeFormatter dt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		LocalDate d1 = LocalDate.parse(d1, dt);
-
-		System.out.println("Premi A se l'ingresso è di un utente ABBONATO o N se non abbonato");
+		System.out.println("Premi A se l'ingresso è di un utente ABBONATO o N se non è abbonato");
 		char scelta;
 		scelta = input.next().charAt(0);
-		switch (s) {
+		switch (scelta) {
 		case 'A':
 		case 'a': {
-			// invochi i metodi della classe Utente Abbonato
+			// inserisco nome e cognome
+			System.out.println("Inserisci il nome dell'utente");
+			String nome = input.nextLine();
+			System.out.println("Inserisci il cognome dell'utente");
+			String cognome = input.nextLine();
+			UtenteAbbonato utenteAbbonato = new UtenteAbbonato(nome, cognome);
+			//aggiungere cod utente nel vettore - vedere come fare
 		}
 		case 'N':
 		case 'n':
-			System.out.println("L'utente non è abbonato");
-			// invochi i metodi di biglietto
+			System.out.println("L'utente non è abbonato.");
+			System.out.println("Sono disponibili delle riduzioni sul prezzo giornaliero\nInserisci l'eta' dell'utente");
+			int eta = input.nextInt();
+			UtenteNonAbbonato utenteNonAbbonato = new UtenteNonAbbonato(eta); 
 		}
 		
 

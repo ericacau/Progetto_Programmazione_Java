@@ -2,12 +2,13 @@ package piscina;
 import java.util.*;
 import java.io.File;
 import java.io.FileNotFoundException;
-
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Piscina {
 	public static void main(String[] args) {
 		Scanner input = new Scanner (System.in);
-		UtenteAbbonato u1 = new UtenteAbbonato(30, "Mario", "Rossi");
+		UtenteAbbonato u1 = new UtenteAbbonato("Mario", "Rossi");
 		Vector <String> v = new Vector<String>();
 		UtenteNonAbbonato uNA1 = new UtenteNonAbbonato(30); 
 		u1.getNome();

@@ -1,6 +1,6 @@
 package piscina;
 
-public class UtenteAbbonato extends Utente {
+public class UtenteAbbonato {
 	
 	String nome;
 	String cognome;
@@ -9,8 +9,7 @@ public class UtenteAbbonato extends Utente {
 	private static int codiceUtenteAbbonato = 0;
 
 	//costruttore
-		public UtenteAbbonato(int eta, String nome, String cognome) {
-			super(eta);
+		public UtenteAbbonato(String nome, String cognome) {
 			this.nome = nome;
 			this.cognome = cognome;
 			UtenteAbbonato.codiceUtenteAbbonato = codiceUtenteAbbonato+1;

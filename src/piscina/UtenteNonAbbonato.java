@@ -1,6 +1,6 @@
 package piscina;
 // asdfghjk
-public class UtenteNonAbbonato extends Utente {
+public class UtenteNonAbbonato {
 	
 	//i prezzi dei biglietti senza abbonamento vengono inizializzati come costanti
 	private static final double BIGLIETTO_INTERO = 3.0;
@@ -9,16 +9,20 @@ public class UtenteNonAbbonato extends Utente {
 	private boolean studente = false;
 	private boolean ridotto_bambini = false;
 	private double prezzoBiglietto;
-	
+	private static int eta;
 	
 	//costruttore dell'utente non abbonato
 	public UtenteNonAbbonato(int eta) {
-		super(eta);
+		this.eta = eta;
 		this.prezzoBiglietto = setPrezzoBiglietto();
 	}
 
 	public double getPrezzoBiglietto() {
 		return prezzoBiglietto;
+	}
+	
+	public static int getEta() {
+		return eta;
 	}
 	
 	public double setPrezzoBiglietto(){
@@ -31,6 +35,8 @@ public class UtenteNonAbbonato extends Utente {
 			
 		return prezzoBiglietto;
 	}
+	
+	
 	
 }
 
