@@ -1,5 +1,5 @@
 package piscina;
-
+// asdfghjk
 public class Biglietto {
 	
 	//i prezzi dei biglietti senza abbonamento vengono inizializzati come costanti
@@ -12,7 +12,7 @@ public class Biglietto {
 	public Biglietto() {
 		//costruttore dell'oggetto biglietto
 		this.prezzoBiglietto = 0;
-		//servirà un codice?
+		//servirï¿½ un codice?
 	}
 
 	public double getPrezzoBiglietto() {
