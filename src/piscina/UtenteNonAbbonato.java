@@ -1,27 +1,31 @@
 package piscina;
 // asdfghjk
-public class Biglietto {
+public class UtenteNonAbbonato extends Utente {
 	
 	//i prezzi dei biglietti senza abbonamento vengono inizializzati come costanti
 	private static final double BIGLIETTO_INTERO = 3.0;
 	private static final double BIGLIETTO_RIDOTTO_BAMBINI = 2;
 	private static final double BIGLIETTO_RIDOTTO_STUDENTI = 2.5;
+	private boolean studente = false;
+	private boolean ridotto_bambini = false;
 	private double prezzoBiglietto;
-	String tipologiaUtente;
-
-	public Biglietto() {
-		//costruttore dell'oggetto biglietto
+	
+	
+	//costruttore dell'utente non abbonato
+	public UtenteNonAbbonato(int eta) {
+		super(eta);
 		this.prezzoBiglietto = 0;
-		//servir� un codice?
 	}
 
 	public double getPrezzoBiglietto() {
 		return prezzoBiglietto;
 	}
 	
-	public double setPrezzoBiglietto{
+	public double setPrezzoBiglietto(){
 		//controllare gli utenti e stabilire il prezzo
 		//si fa uno switch?
+		
+		return prezzo;
 	}
 
 	
