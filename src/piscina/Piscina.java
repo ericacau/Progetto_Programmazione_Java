@@ -7,9 +7,12 @@ import java.io.FileNotFoundException;
 public class Piscina {
 	public static void main(String[] args) {
 		Scanner input = new Scanner (System.in);
-		UtenteAbbonato u1 = new UtenteAbbonato("Mario", "Rossi", 0);
+		UtenteAbbonato u1 = new UtenteAbbonato(30, "Mario", "Rossi");
 		Vector <String> v = new Vector<String>();
-
+		UtenteNonAbbonato uNA1 = new UtenteNonAbbonato(30); 
+		u1.getNome();
+		double prezzo = uNA1.getPrezzoBiglietto();
+		System.out.println(prezzo);
 		//prove per la lettura del file txt
 		
 	

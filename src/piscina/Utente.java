@@ -3,14 +3,15 @@ package piscina;
 public class Utente {
 	private String nome; 
 	private String cognome;
-	private int eta;
+	private static int eta;
 	
+	//controllare se l'età dell'utente è > 0
 	public Utente(int eta){
 		
 		this.eta = eta;
 	}
 
-	public int getEta() {
+	public static int getEta() {
 		return eta;
 	}
 
