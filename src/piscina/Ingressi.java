@@ -7,32 +7,27 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 
-public class Ingressi {
-	private static Date data;
-	private static Scanner input = new Scanner (System.in);
+/*CLASSE INGRESSI:  non so ancora se fare un'unica classe ingressi o due distinte
+	String nome;
+	String cognome;
+	*/
+public class Ingressi  {
+	Date data;
+	double prezzo;
 
-	public Ingressi() {
+	public Ingressi(Date data, double prezzo) {
 		this.data = data;
+		this.prezzo = prezzo;
+
 	}
 
-	public static Date getData() {
+	public Date getData() {
 		return data;
 	}
 
-	public static LocalDate setData() {
-
-		System.out.println("Inserisci la data dell'accesso in formato DD/MM/YYYY");
-		// l'utente inserisce la data;
-		String d = input.nextLine();
-
-		// inserire un controllo sulla correttezza della data (try catch)
-
-		DateTimeFormatter dt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		LocalDate d1 = LocalDate.parse(d1, dt);
-		
-		return d1;
-	}
-	
 	//setto la data
+	public void setData(Date data) {
+		this.data = data;
+	}
 	
 }

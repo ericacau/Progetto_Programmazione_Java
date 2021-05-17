@@ -8,18 +8,27 @@ import java.time.format.DateTimeFormatter;
 public class Piscina {
 	public static void main(String[] args) {
 		Scanner input = new Scanner (System.in);
+
+		// creo un utente abbonato
 		UtenteAbbonato u1 = new UtenteAbbonato("Mario", "Rossi");
-		Vector <String> v = new Vector<String>();
+		
+		// crea un utente abbonato
 		UtenteNonAbbonato uNA1 = new UtenteNonAbbonato(30); 
+
+		// vettore ingressi (?)
+		Vector <String> v = new Vector<String>();
+		
 		u1.getNome();
+		
 		double prezzo = uNA1.getPrezzoBiglietto();
+		
 		System.out.println(prezzo);
 		//prove per la lettura del file txt
 		
-	
+		/*MENU*/
 		System.out.println("Benvenuto nel pannello di controllo degli ingressi della piscina \"La Sirena\". Ecco le possibili operazioni");
 		
-		//MENU'
+		
 		char scelta;
 		do {
 			System.out.println("\n");
@@ -36,7 +45,7 @@ public class Piscina {
 			if(scelta == 'U') {
 				System.out.println("Uscita.");
 			}
-			//servirà qualcosa che permetta di aggiungere utenti?
+			//servirï¿½ qualcosa che permetta di aggiungere utenti?
 			switch (scelta) {
 			case 'A' :
 			case 'a' :{
