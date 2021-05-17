@@ -3,7 +3,7 @@ package piscina;
 public class UtenteAbbonato {
 	
 	String nome;
-	String cognome;
+	String cognome; 
 	
 	//COSTANTE
 	private static int codiceUtenteAbbonato = 0;
@@ -24,9 +24,9 @@ public class UtenteAbbonato {
 			return nome;
 		}
 
-		public String getCognome() {
+/*		public String getCognome() {
 			return cognome;
 		}
-	
+*/	
 	
 }

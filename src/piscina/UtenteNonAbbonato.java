@@ -8,8 +8,8 @@ public class UtenteNonAbbonato {
 	//private static final double BIGLIETTO_RIDOTTO_STUDENTI = 2.5;
 	private boolean studente = false;
 	private boolean ridotto_bambini = false;
-	private double prezzoBiglietto;
-	private static int eta;
+	protected double prezzoBiglietto;
+	protected static int eta;
 	
 	//costruttore dell'utente non abbonato
 	public UtenteNonAbbonato(int eta) {
