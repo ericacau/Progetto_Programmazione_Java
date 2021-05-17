@@ -7,10 +7,10 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 
-/*CLASSE INGRESSI:  non so ancora se fare un'unica classe ingressi o due distinte
+/*CLASSE INGRESSI: non so ancora se fare un'unica classe ingressi o due distinte
 	String nome;
 	String cognome;
-	*/
+	*/ 
 public class Ingressi  {
 	Date data;
 	double prezzo;
