@@ -1,10 +1,6 @@
 package piscina;
 
-import java.util.*;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 
 /*CLASSE INGRESSI: non so ancora se fare un'unica classe ingressi o due distinte
@@ -16,7 +12,7 @@ public class Ingressi {
     private LocalDate data;
     private String informazioni;
 
-    public Ingressi(LocalDate data, String informazioni) {
+    public Ingressi(LocalDate data) {
         this.data = data;
         this.informazioni = informazioni;
     }

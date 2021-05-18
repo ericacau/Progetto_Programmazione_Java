@@ -13,12 +13,11 @@ public class GestionePiscina {
 	 */
 
     private Scanner input = new Scanner(System.in);
-    private Vector vettoreAbbonamenti;
-
+    private Vector <Ingressi> IngressiTOT;
 
     // Costruttore del GestorePiscina
     public GestionePiscina(Vector v1) {
-        this.vettoreAbbonamenti = v1;
+        this.IngressiTOT = v1;
     }
 
     public void aggiungiIngresso() {
@@ -40,7 +39,9 @@ public class GestionePiscina {
                 System.out.println("Inserisci il cognome dell'utente");
                 String cognome = input.nextLine();
                 UtenteAbbonato utenteAbbonato = new UtenteAbbonato(nome, cognome);
-                info = utenteAbbonato.nome + " " + utenteAbbonato.cognome;
+                IngressiAbbonati nuovoIngressoAbbonati = new IngressiAbbonati(dataIngresso, utenteAbbonato);
+                IngressiTOT.add(nuovoIngressoAbbonati);
+
                 break;
             case 'N':
             case 'n':
@@ -52,11 +53,10 @@ public class GestionePiscina {
                 utenteNonAbbonato.setPrezzoBiglietto();
                 double prezzo = utenteNonAbbonato.getPrezzoBiglietto();
                 //casto a string
-                info = "" + prezzo;
-                break;
+                IngressiNonAbbonati nuovoIngresso = new IngressiNonAbbonati(dataIngresso, utenteNonAbbonato, prezzo);
+                IngressiTOT.add(nuovoIngresso);
         }
-        Ingressi i1 = new Ingressi(dataIngresso, info);
-        vettoreAbbonamenti.add(i1);
+
 
     }
 
@@ -104,8 +104,8 @@ public class GestionePiscina {
     }
 
     public void visualizzaIngresso() {
-        System.out.println("----------------Elenco ingressi-----------------");
-        for (Object ingresso : vettoreAbbonamenti) {
+        System.out.println("----------------Elenco totale ingressi-----------------");
+        for (Object ingresso : IngressiTOT) {
             System.out.println(ingresso);
         }
     }

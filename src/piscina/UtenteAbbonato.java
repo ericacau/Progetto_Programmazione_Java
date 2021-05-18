@@ -24,9 +24,9 @@ public class UtenteAbbonato {
 			return nome;
 		}
 
-/*		public String getCognome() {
+		public String getCognome() {
 			return cognome;
 		}
-*/	
+
 	
 }
