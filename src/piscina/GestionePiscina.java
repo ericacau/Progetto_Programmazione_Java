@@ -1,88 +1,112 @@
 package piscina;
 
 import java.util.*;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class GestionePiscina {
-	static Scanner input = new Scanner(System.in);
+	/* inizializzo le seguenti variabili:
+	 		- input: il nostro scanner per interagire con l'utente;
+	 		- vettoreAbbonamenti: per aggiungere/rimuovere gli ingressi;
+	 		- info: stringa per costruire le informazioni sull'ingresso (conterrà
+	 				il prezzo o il nome/cognome dell'utente.
+	 */
 
-	/* Crea un vettore 'ingresso' contenente 
-	* la data di ingresso (oggetto Date)
-	* la descrizione 
-		- utente abbonato = nome e cognome
-		- utente non abbonato = prezzo
-	*/
-
-	// vettore ingressi inizialmente vuoto
-	Vector <Ingressi> ingressi = new Vector <Ingressi>();
-
-	public static void aggiungiIngresso() {
-		//chiedo all'utente la data
-		System.out.println("Inserisci una data in formato DD/MM/YYYY");
-		// l'utente inserisce la data;
-		String d = input.nextLine();
-		// inserire un controllo sulla correttezza della data (try catch)
-		DateTimeFormatter dt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		LocalDate d1 = LocalDate.parse(d1, dt); 
-		//controllare anche la data per vedere se è feriale o festivo 	
-
-		System.out.println("Stai aggiungendo un nuovo ingresso");
-		System.out.println("Premi A se l'ingresso e' di un utente ABBONATO o N se non e' abbonato");
-		
-		char scelta;
-		scelta = input.next().charAt(0);
-		switch (scelta) {
-		case 'A':
-		case 'a': {
-			// inserisco nome e cognome
-			System.out.println("Inserisci il nome dell'utente");
-			String nome = input.nextLine();
-			System.out.println("Inserisci il cognome dell'utente");
-			String cognome = input.nextLine();
-			UtenteAbbonato utenteAbbonato = new UtenteAbbonato(nome, cognome);
-			
-			
-		}
-		case 'N':
-		case 'n':
-			System.out.println("L'utente non e' abbonato.");
-			System.out.println("Sono disponibili delle riduzioni sul prezzo giornaliero\nInserisci l'eta' dell'utente");
-			int eta = input.nextInt();
-			UtenteNonAbbonato utenteNonAbbonato = new UtenteNonAbbonato(eta);
-			//setto il valore del biglietto
-			utenteNonAbbonato.setPrezzoBiglietto();
-			//salvo il valore del prezzo in una var 
-			double p = utenteNonAbbonato.getPrezzoBiglietto();
-		}
+    private Scanner input = new Scanner(System.in);
+    private Vector vettoreAbbonamenti;
 
 
-	}
-	/***METODI***/
-	// visualizzare la lista degli ingressi di uno specifico giorno
-	public static IngressiGiornalieri() {
-		// dobbiamo fare tutto quel discorso dei vettori da scorrere? 
-	}
-	// visualizzare la lista degli ingressi di uno specifico mese in ORDINE
-	public static IngressiMensiliOrdinati() {
-		//ordinare gli ingressi x data 
-	}
-	// visualizzare l'elenco di tutti gli ingressi di uno specifico utente abbonato
-	public static IngressiUtenteAbbonato(){
+    // Costruttore del GestorePiscina
+    public GestionePiscina(Vector v1) {
+        this.vettoreAbbonamenti = v1;
+    }
 
-	}
-	// visualizzare l'elenco degli incassi giornalieri di uno specifico mese
-	public static IncassiMensili() {
+    public void aggiungiIngresso() {
+        //chiedo all'utente la data
+        System.out.println("Stai aggiungendo un nuovo ingresso");
+        System.out.println("Inserisci una data in formato DD/MM/YYYY");
+        LocalDate dataIngresso = chiediData();
+        String info = "";
+        System.out.println("Premi A se l'ingresso e' di un utente ABBONATO o N se non e' abbonato");
 
-	}
-	/* visualizzare l'elenco con il numero degli ingressi in abbonamento giornalieri di uno specifico mese*/
-	public static IngressiAbbonatiMensili () {
+        char scelta;
+        scelta = input.next().charAt(0);
+        switch (scelta) {
+            case 'A':
+            case 'a':
+                // inserisco nome e cognome
+                System.out.println("Inserisci il nome dell'utente");
+                String nome = input.nextLine();
+                System.out.println("Inserisci il cognome dell'utente");
+                String cognome = input.nextLine();
+                UtenteAbbonato utenteAbbonato = new UtenteAbbonato(nome, cognome);
+                info = utenteAbbonato.nome + " " + utenteAbbonato.cognome;
+                break;
+            case 'N':
+            case 'n':
+                System.out.println("Hai selezionato \"utente non abbonato.\"");
+                System.out.println("Sono disponibili delle riduzioni sul prezzo giornaliero\nInserisci l'eta' dell'utente");
+                //controllare anche la data per vedere se è feriale o festivo
+                int eta = input.nextInt();
+                UtenteNonAbbonato utenteNonAbbonato = new UtenteNonAbbonato(eta);
+                utenteNonAbbonato.setPrezzoBiglietto();
+                double prezzo = utenteNonAbbonato.getPrezzoBiglietto();
+                //casto a string
+                info = "" + prezzo;
+                break;
+        }
+        Ingressi i1 = new Ingressi(dataIngresso, info);
+        vettoreAbbonamenti.add(i1);
 
-	}
-	//visualizzare il numero di ingressi ridotti (nuovo metodo che potremmo aggiungere)
-	public static IngressiRidotti() {
+    }
 
-	}
+
+    /***METODI***/
+    // visualizzare la lista degli ingressi di uno specifico giorno
+    public void IngressiGiornalieri() {
+        // dobbiamo fare tutto quel discorso dei vettori da scorrere?
+    }
+
+    // visualizzare la lista degli ingressi di uno specifico mese in ORDINE
+    public void IngressiMensiliOrdinati() {
+        //ordinare gli ingressi x data
+    }
+
+    // visualizzare l'elenco di tutti gli ingressi di uno specifico utente abbonato
+    public void IngressiUtenteAbbonato() {
+
+    }
+
+    // visualizzare l'elenco degli incassi giornalieri di uno specifico mese
+    public void IncassiMensili() {
+
+    }
+
+    /* visualizzare l'elenco con il numero degli ingressi in abbonamento giornalieri di uno specifico mese*/
+    public void IngressiAbbonatiMensili() {
+
+    }
+
+    //visualizzare il numero di ingressi ridotti (nuovo metodo che potremmo aggiungere)
+    public void IngressiRidotti() {
+
+    }
+
+
+    // creo un metodo ausiliario per chiedere la data all'utente
+    public LocalDate chiediData() {
+        String d1 = input.nextLine();
+        // inserire un controllo sulla correttezza della data (try catch)
+        DateTimeFormatter formattaData = DateTimeFormatter.ofPattern("d/M/yyyy");
+        LocalDate data = LocalDate.parse(d1, formattaData);
+        //controllare anche la data per vedere se è feriale o festivo
+        return data;
+    }
+
+    public void visualizzaIngresso() {
+        System.out.println("----------------Elenco ingressi-----------------");
+        for (Object ingresso : vettoreAbbonamenti) {
+            System.out.println(ingresso);
+        }
+    }
 }

@@ -10,24 +10,24 @@ import java.time.format.DateTimeFormatter;
 /*CLASSE INGRESSI: non so ancora se fare un'unica classe ingressi o due distinte
 	String nome;
 	String cognome;
-	*/ 
-public class Ingressi  {
-	Date data;
-	double prezzo;
+	*/
+public class Ingressi {
 
-	public Ingressi(Date data, double prezzo) {
-		this.data = data;
-		this.prezzo = prezzo;
+    private LocalDate data;
+    private String informazioni;
 
-	}
+    public Ingressi(LocalDate data, String informazioni) {
+        this.data = data;
+        this.informazioni = informazioni;
+    }
 
-	public Date getData() {
-		return data;
-	}
+    public LocalDate getData() {
+        return data;
+    }
 
-	//setto la data
-	public void setData(Date data) {
-		this.data = data;
-	}
-	
+
+
+    public String toString() {
+            return "Ingresso: " + data + "\n" + "info " + informazioni;
+    }
 }
