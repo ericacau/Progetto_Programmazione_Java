@@ -10,8 +10,16 @@ public class IngressiAbbonati extends Ingressi{
         this.utente = u;
     }
 
+    public UtenteAbbonato getUtente() {
+        return utente;
+    }
+
+    public void setUtente(UtenteAbbonato utente) {
+        this.utente = utente;
+    }
+
     public String toString() {
-        return "DATA INGRESSO: " + this.getData() + "\t" + "Nome e Cognome utente: " + utente.getNome() + " " + utente.getCognome();
+        return "DATA INGRESSO: " + this.getData() + "\t" + "Nome e Cognome utente: " + utente.getNome() + " " + utente.getCognome() + "\t" + utente.getCodiceUtenteAbbonato();
     }
 }
 

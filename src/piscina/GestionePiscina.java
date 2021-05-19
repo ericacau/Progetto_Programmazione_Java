@@ -41,7 +41,7 @@ public class GestionePiscina {
                 UtenteAbbonato utenteAbbonato = new UtenteAbbonato(nome, cognome);
                 IngressiAbbonati nuovoIngressoAbbonati = new IngressiAbbonati(dataIngresso, utenteAbbonato);
                 IngressiTOT.add(nuovoIngressoAbbonati);
-
+                System.out.println("Ingresso inserito");
                 break;
             case 'N':
             case 'n':
@@ -53,8 +53,9 @@ public class GestionePiscina {
                 utenteNonAbbonato.setPrezzoBiglietto();
                 double prezzo = utenteNonAbbonato.getPrezzoBiglietto();
                 //casto a string
-                IngressiNonAbbonati nuovoIngresso = new IngressiNonAbbonati(dataIngresso, utenteNonAbbonato, prezzo);
-                IngressiTOT.add(nuovoIngresso);
+                IngressiNonAbbonati nuovoIngressoNonAbbonati = new IngressiNonAbbonati(dataIngresso, utenteNonAbbonato, prezzo);
+                IngressiTOT.add(nuovoIngressoNonAbbonati);
+                System.out.println("Ingresso inserito");
         }
 
 
@@ -62,18 +63,19 @@ public class GestionePiscina {
 
 
     /***METODI***/
+       // visualizzare la lista degli ingressi di uno specifico mese in ORDINE
+    public void IngressiMensiliOrdinati() {
+
+    }
+
     // visualizzare la lista degli ingressi di uno specifico giorno
     public void IngressiGiornalieri() {
-        // dobbiamo fare tutto quel discorso dei vettori da scorrere?
-    }
 
-    // visualizzare la lista degli ingressi di uno specifico mese in ORDINE
-    public void IngressiMensiliOrdinati() {
-        //ordinare gli ingressi x data
     }
-
     // visualizzare l'elenco di tutti gli ingressi di uno specifico utente abbonato
-    public void IngressiUtenteAbbonato() {
+    public void IngressiUtenteAbbonato(String nomeInserito, String cognomeInserito) {
+
+
 
     }
 
@@ -94,7 +96,7 @@ public class GestionePiscina {
 
 
     // creo un metodo ausiliario per chiedere la data all'utente
-    public LocalDate chiediData() {
+    private LocalDate chiediData() {
         String d1 = input.nextLine();
         // inserire un controllo sulla correttezza della data (try catch)
         DateTimeFormatter formattaData = DateTimeFormatter.ofPattern("d/M/yyyy");

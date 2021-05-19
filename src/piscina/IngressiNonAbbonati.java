@@ -12,7 +12,7 @@ public class IngressiNonAbbonati extends Ingressi{
 
 
     public String toString() {
-        return "DATA INGRESSO: " + this.getData() + "\t" + "Biglietto " + this.prezzo + ;
+        return "DATA INGRESSO: " + this.getData() + "\t" + "Biglietto " + this.prezzo + "\t" + "RIDUZIONE" ;
 
     }
 }

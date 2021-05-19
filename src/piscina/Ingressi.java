@@ -20,10 +20,6 @@ public class Ingressi {
     public LocalDate getData() {
         return data;
     }
-
-
-
-    public String toString() {
-            return "Ingresso: " + data + "\n" + "info " + informazioni;
-    }
 }
+
+
