@@ -92,6 +92,17 @@ public class GestionePiscina {
     //visualizzare il numero di ingressi ridotti (nuovo metodo che potremmo aggiungere)
     public void IngressiRidotti() {
 
+        for (Ingresso i : IngressiTOT) {
+            if (i instanceof IngressiNonAbbonati) {
+                IngressiNonAbbonati nonabb = (IngressiNonAbbonati) i; //down cast
+                
+                UtenteNonAbbonato u2 = nonabb.getU();
+                if(u2.getStudente() || (u2.getridottoBambiniEAnziani()) {
+                    System.out.println("Ingresso ridotto studenti: "+ u2.toString());
+                    System.out.println("Ingresso ridotto bambini e anziani: "+ u2.toString());             
+                }
+            }
+     }
     }
 
 
