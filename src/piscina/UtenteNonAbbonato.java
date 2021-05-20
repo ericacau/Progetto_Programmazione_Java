@@ -30,6 +30,10 @@ public class UtenteNonAbbonato {
         return eta;
     }
 
+    public boolean getRidottoBambiniEAnziani(){
+        return ridottoBambiniEAnziani;
+    }
+
     public double setPrezzoBiglietto() {
         //verifica la tipologia di utente e stabilisce il prezzo
         if (isRidottoBambiniEAnziani()) {
@@ -69,5 +73,10 @@ public class UtenteNonAbbonato {
         }
         return studente;
     }
+
+    public boolean getStudente() {
+        return studente;
+    }
+
 }
 

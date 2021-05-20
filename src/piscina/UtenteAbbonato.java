@@ -28,6 +28,7 @@ public class UtenteAbbonato {
 			return cognome;
 		}
 
+
 		public boolean equals(String nomeInserito, String cognomeInserito) {
 			return(nome.equals(nomeInserito) && cognome.equals(cognomeInserito));
 }
