@@ -1,19 +1,21 @@
 package piscina;
 
 import java.time.LocalDate;
-
+/*Estensione della superclasse Ingressi che gestisce gli ingressi degli utenti non abbonati contenenti
+* data di ingresso
+* utente -> variabile che contiene le informazioni della classe utenteAbbonato (nome e cognome)*/
 public class IngressiNonAbbonati extends Ingressi{
     private double prezzo;
-    private UtenteNonAbbonato u;
+    private UtenteNonAbbonato utenteNA;
 
-    public IngressiNonAbbonati(LocalDate data, UtenteNonAbbonato u, double prezzo) {
+    public IngressiNonAbbonati(LocalDate data, UtenteNonAbbonato utenteNA, double prezzo) {
         super(data);
-        this.prezzo = u.getPrezzoBiglietto();
-        this.u = u;
+        this.prezzo = utenteNA.getPrezzoBiglietto();
+        this.utenteNA = utenteNA;
     }
 
-    public UtenteNonAbbonato getU() {
-        return u;
+    public UtenteNonAbbonato getUtenteNA() {
+        return utenteNA;
     }
 
     public String toString() {

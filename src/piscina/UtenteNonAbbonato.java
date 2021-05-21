@@ -4,6 +4,13 @@ import java.util.Scanner;
 
 // asdfghjk
 public class UtenteNonAbbonato {
+    /* UTENTE NON ABBONATO
+		gestisce gli oggetti utenti abbonati composti dal prezzo del biglietto che può essere di due tipi
+            * INTERO (3 euro)
+            * RIDOTTO -> in base a due criteri  
+                -  età (2 euro) : riuzione per i bambini al di sotto dei 12 anni e per gli anziani (a partire dai 65 anni)
+                -  studente (2,50 euro): ridotto per gli studenti (età inferiore ai 24 anni)
+	*/
 
     //i prezzi dei biglietti senza abbonamento vengono inizializzati come costanti
     private static final double BIGLIETTO_INTERO = 3.0;

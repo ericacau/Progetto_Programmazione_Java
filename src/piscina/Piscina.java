@@ -17,12 +17,11 @@ public class Piscina {
         Scanner input = new Scanner(System.in);
         Vector<Ingressi> ingressi = new Vector<Ingressi>();
 
-
-
-        /*MENU*/
+        /*-------MENU--------*/
+        /*  l'utente in base alla lettera scelta dall'utente (da A a H) potrà effettuare le varie operazioni 
+            sugli ingressi richiamando i metodi della classe GestionePiscina 
+        */
         System.out.println("Benvenuto nel pannello di controllo degli ingressi della piscina \"La Sirena\". Ecco le possibili operazioni");
-
-
         char scelta;
         do {
             System.out.println("\n");
@@ -33,6 +32,7 @@ public class Piscina {
             System.out.println("E - Visualizzare gli ingressi di un utente abbonato");
             System.out.println("F - Visualizzare gli incassi giornalieri di uno specifico mese");
             System.out.println("G - Visualizzare l'elenco con il numero di ingressi in abbonamento giornalieri di uno specifico mese");
+            System.out.println("H - Visualizzare l'elenco degli ingressi ridotti");
             System.out.println("U - Uscita");
             System.out.println("\nCosa vuoi fare?");
             scelta = input.next().charAt(0);
@@ -56,6 +56,7 @@ public class Piscina {
 
                 case 'C':
                 case 'c':
+                //    GestionePiscina ridotto = IngressiTOT.IngressiGiornalieri();
                     break;
 
 
@@ -78,6 +79,12 @@ public class Piscina {
 
                     break;
 
+                case 'H':
+                case 'h':
+                    
+                    //GestionePiscina ridotti = ridotti.IngressiRidotti();
+
+                    break;
                 default:
                     throw new IllegalArgumentException("Hai inserito un carattere errato");
             }
