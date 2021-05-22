@@ -1,12 +1,14 @@
 package piscina;
 
 public class UtenteAbbonato {
-	
+	/* UTENTE ABBONATO
+		* gestisce gli oggetti utenti abbonati composti da nome e cognome e codice utente 
+			(che varia per ogni utente e serve per gestire casi di omonimia)
+	*/
+
 	String nome;
 	String cognome; 
-	
-	//COSTANTE
-	private static int codiceUtenteAbbonato = 0;
+	private static int codiceUtenteAbbonato = 0;//COSTANTE
 
 	//costruttore
 		public UtenteAbbonato(String nome, String cognome) {
