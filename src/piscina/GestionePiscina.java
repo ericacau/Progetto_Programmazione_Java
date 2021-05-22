@@ -97,10 +97,31 @@ public class GestionePiscina {
     }
 
     // visualizzare l'elenco di tutti gli ingressi di uno specifico utente abbonato
-    public void IngressiUtenteAbbonato(String nomeInserito, String cognomeInserito) {
+       // visualizzare l'elenco di tutti gli ingressi di uno specifico utente abbonat
 
+        String nomeUtente = input.nextLine();
+        System.out.println("Inserisci il cognome dell'utente");
+        String cognomeUtente = input.nextLine();
+        IngressiAbbonati iA = null
+
+            if(i instanceof IngressiAbbonati){
+                iA = (IngressiAbbonati)i;
+      
+                UtenteAbbonato utente = iA.getUtente();
+      
+                String nomeUtenteAbbonato = utente.getNome();
+                String cognomeUtenteAbbonato = utente.getCognome();
+                //controllo il nome dell'utente e il cognome
+                boolean controllo = utente.equals(nomeUtente, cognomeUtente);
+                 System.out.println("VAL BOOL: " + controllo);
+                (controllo){
+                    System.out.println(iA.toString());
+                }
+            } 
+        }
 
     }
+
 
     // visualizzare l'elenco degli incassi giornalieri di uno specifico mese
     public void IncassiMensili() {

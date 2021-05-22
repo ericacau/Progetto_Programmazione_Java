@@ -66,6 +66,8 @@ public class Piscina {
 
                 case 'E':
                 case 'e':
+                    System.out.println("Stai visualizzando gli ingressi di uno specifico utente abbonato");
+                    nuovoIngresso.IngressiUtenteAbbonato();
                     break;
 
 
