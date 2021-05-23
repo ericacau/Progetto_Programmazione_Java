@@ -17,6 +17,7 @@ public class UtenteAbbonato {
 			UtenteAbbonato.codiceUtenteAbbonato = codiceUtenteAbbonato+1;
 	}
 
+
 		//metodo per visualizzare il codice utente abbonato
 		public static int getCodiceUtenteAbbonato() {
 			return codiceUtenteAbbonato;

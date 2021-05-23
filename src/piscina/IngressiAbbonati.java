@@ -28,6 +28,10 @@ public class IngressiAbbonati extends Ingressi{
     public String toString() {
         return "DATA INGRESSO: " + this.getData() + "\t" + "Nome e Cognome utente: " + utenteA.getNome() + " " + utenteA.getCognome() + "\t" + utenteA.getCodiceUtenteAbbonato();
     }
+
+    public UtenteAbbonato getUtente() {
+        return utenteA;
+    }
 }
 
 

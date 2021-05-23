@@ -14,9 +14,10 @@ public class Piscina {
 		- utente abbonato = nome e cognome
 		- utente non abbonato = prezzo
 		*/
+
         Scanner input = new Scanner(System.in);
         Vector<Ingressi> ingressi = new Vector<Ingressi>();
-
+        GestionePiscina nuovoIngresso = new GestionePiscina(ingressi);
         /*-------MENU--------*/
         /*  l'utente in base alla lettera scelta dall'utente (da A a H) potrà effettuare le varie operazioni 
             sugli ingressi richiamando i metodi della classe GestionePiscina 
@@ -48,7 +49,6 @@ public class Piscina {
                     break;
                 case 'B':
                 case 'b':
-                    GestionePiscina nuovoIngresso = new GestionePiscina(ingressi);
                     //invoco il metodo per aggiungere l'ingresso
                     nuovoIngresso.aggiungiIngresso();
                     nuovoIngresso.visualizzaIngresso();
@@ -56,7 +56,7 @@ public class Piscina {
 
                 case 'C':
                 case 'c':
-                //    GestionePiscina ridotto = IngressiTOT.IngressiGiornalieri();
+                    nuovoIngresso.IngressiGiornalieri();
                     break;
 
 
