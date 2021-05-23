@@ -1,27 +1,40 @@
 package piscina;
 
 import java.util.*;
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Piscina {
     public static void main(String[] args) {
-		/* Crea un vettore 'ingresso' contenente
-				- la data di ingresso (oggetto Date)
-				- la descrizione
-		- utente abbonato = nome e cognome
-		- utente non abbonato = prezzo
-		*/
+		//Crea un vettore 'ingresso' contenente data e utenteAbbonato o non abbonato
 
         Scanner input = new Scanner(System.in);
         Vector<Ingressi> ingressi = new Vector<Ingressi>();
-        GestionePiscina nuovoIngresso = new GestionePiscina(ingressi);
+        ObjectInputStream inputStream;
+        String nomeFile = "ingressiPiscina";
+
+        //leggo il file in input ingressiPiscina.dat
+        try {
+            inputStream = new ObjectInputStream(new FileInputStream(nomeFile));
+            ingressi = (Vector<Ingressi>) inputStream.readObject(); //conversione di tipo anche qui
+            System.out.println("Lettura del file in corso...");
+            inputStream.close();
+        } catch (FileNotFoundException e){
+            System.out.println("Errore. File non trovato");
+        } catch (IOException e) {
+            System.out.println("Errore nella lettura del file di input." + nomeFile);
+        } catch (ClassNotFoundException e) {
+            System.out.println("Errore nella lettura degli ingressi da file.");
+        }
+        if(ingressi.isEmpty()){
+            System.out.println("Il file ingressi è vuoto. Inserisci degli ingressi per poter salvare un nuovo file.");
+        }
         /*-------MENU--------*/
-        /*  l'utente in base alla lettera scelta dall'utente (da A a H) potrà effettuare le varie operazioni 
-            sugli ingressi richiamando i metodi della classe GestionePiscina 
-        */
+        //l'utente in base alla lettera scelta dall'utente (da A a H) potrà effettuare le varie operazioni
+        //    sugli ingressi richiamando i metodi della classe GestionePiscina
+
+        GestionePiscina nuovoIngresso = new GestionePiscina(ingressi);
         System.out.println("Benvenuto nel pannello di controllo degli ingressi della piscina \"La Sirena\". Ecco le possibili operazioni");
         char scelta;
         do {
@@ -44,47 +57,38 @@ public class Piscina {
             switch (scelta) {
                 case 'A':
                 case 'a':
-                    System.out.println("Leggo il file ingressi...");
-                    letturaIngressi.leggiFile();
-                    break;
-                case 'B':
-                case 'b':
                     //invoco il metodo per aggiungere l'ingresso
                     nuovoIngresso.aggiungiIngresso();
                     nuovoIngresso.visualizzaIngresso();
                     break;
-
-                case 'C':
-                case 'c':
+                case 'B':
+                case 'b':
                     nuovoIngresso.IngressiGiornalieri();
                     break;
-
+                case 'C':
+                case 'c':
+                    break;
 
                 case 'D':
                 case 'd':
-                    break;
-
-                case 'E':
-                case 'e':
                     System.out.println("Stai visualizzando gli ingressi di uno specifico utente abbonato");
                     nuovoIngresso.IngressiUtenteAbbonato();
                     break;
 
 
-                case 'F':
-                case 'f':
+                case 'E':
+                case 'e':
                     break;
 
+
+                case 'F':
+                case 'f':
+
+                    break;
 
                 case 'G':
                 case 'g':
-
-                    break;
-
-                case 'H':
-                case 'h':
-                    
-                    //GestionePiscina ridotti = ridotti.IngressiRidotti();
+                    nuovoIngresso.IngressiRidotti();
 
                     break;
                 default:
@@ -92,6 +96,6 @@ public class Piscina {
             }
         }
         while (scelta != 'U' || scelta != 'u');
-     input.close();
+        input.close();
     }
 }
