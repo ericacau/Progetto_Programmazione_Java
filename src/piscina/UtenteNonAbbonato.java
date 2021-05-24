@@ -18,9 +18,10 @@ public class UtenteNonAbbonato {
     private static final double BIGLIETTO_RIDOTTO_STUDENTI = 2.5;
     private boolean studente = false;
     private boolean ridottoBambiniEAnziani = false;
-    private Scanner input = new Scanner(System.in);
     private double prezzoBiglietto;
     private int eta;
+
+    private Scanner input = new Scanner(System.in);
 
 
     //costruttore dell'utente non abbonato
@@ -37,34 +38,51 @@ public class UtenteNonAbbonato {
         return eta;
     }
 
-    public boolean getRidottoBambiniEAnziani(){
+    public boolean getStudente() {
+        return studente;
+    }
+
+    public boolean getRidottoBambiniEAnziani() {
         return ridottoBambiniEAnziani;
     }
+
+    public String stampaTipoRiduzione() {
+        String riduzioneAttuale = "Nessuna riduzione prevista";
+        if (studente) {
+            riduzioneAttuale = "ridotto studenti";
+        }
+        if (ridottoBambiniEAnziani) {
+            riduzioneAttuale = "ridotto eta'";
+        }
+        return riduzioneAttuale;
+    }
+
 
     public double setPrezzoBiglietto() {
         //verifica la tipologia di utente e stabilisce il prezzo
         if (isRidottoBambiniEAnziani()) {
             prezzoBiglietto = BIGLIETTO_RIDOTTO_ETA;
         }
-        if (isStudente()) {
-            prezzoBiglietto = BIGLIETTO_RIDOTTO_STUDENTI;
-        } else
+        else if (eta <= 24 && isStudente()) {
+                prezzoBiglietto = BIGLIETTO_RIDOTTO_STUDENTI;
+            }
+        else
             prezzoBiglietto = BIGLIETTO_INTERO;
-
         return prezzoBiglietto;
     }
+
+
 
     /* METODI AUSILIARI CHE CONTROLLANO LA TIPOLOGIA DI UTENTE*/
 
     private boolean isRidottoBambiniEAnziani() {
         if ((eta <= 12) || (eta >= 65))
             ridottoBambiniEAnziani = true;
-
         return ridottoBambiniEAnziani;
     }
 
     private boolean isStudente() {
-        System.out.println("Sei uno studente minore di 24 anni?");
+        System.out.println("Sei uno studente?");
         char s = input.next().charAt(0);
         switch (s) {
             case 'S':
@@ -75,15 +93,11 @@ public class UtenteNonAbbonato {
             case 'N':
             case 'n':
                 System.out.println("Non studente");
+                break;
             default:
-                System.out.println("Non sono previste riduzioni");
+                System.out.println("Non sono previste riduzione");
         }
         return studente;
     }
 
-    public boolean getStudente() {
-        return studente;
-    }
-
 }
-

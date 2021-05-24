@@ -19,7 +19,7 @@ public class Ingressi {
         this.informazioni = informazioni;
     }
 
-    public static LocalDate getData() {
+    public LocalDate getData() {
         return data;
     }
 }

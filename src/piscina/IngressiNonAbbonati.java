@@ -1,6 +1,8 @@
 package piscina;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 /*Estensione della superclasse Ingressi che gestisce gli ingressi degli utenti non abbonati contenenti
 * data di ingresso
 * utente -> variabile che contiene le informazioni della classe utenteAbbonato (nome e cognome)*/
@@ -19,7 +21,8 @@ public class IngressiNonAbbonati extends Ingressi{
     }
 
     public String toString() {
-        return "DATA INGRESSO: " + this.getData() + "\t" + "Biglietto " + this.prezzo + "\t" + "RIDUZIONE" ;
-
+        DateTimeFormatter formattaData = DateTimeFormatter.ofPattern("dd/M/yyyy");
+        String dataStampa = this.getData().format(formattaData);
+        return "DATA INGRESSO: " + dataStampa + "\t" + "Biglietto " + this.prezzo + "\t" + "RIDUZIONE: "  + utenteNA.stampaTipoRiduzione();
     }
 }

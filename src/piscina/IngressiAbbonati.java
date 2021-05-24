@@ -1,5 +1,7 @@
 package piscina;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 /*CLASSE INGRESSIABBONATI 
@@ -8,10 +10,10 @@ import java.util.*;
     * utente -> variabile che contiene le informazioni della classe utenteAbbonato (nome e cognome)  
 
 */
-public class IngressiAbbonati extends Ingressi{
+public class IngressiAbbonati extends Ingressi {
     private UtenteAbbonato utenteA;
 
-    public IngressiAbbonati(Date data, UtenteAbbonato utenteA) {
+    public IngressiAbbonati(LocalDate data, UtenteAbbonato utenteA) {
         super(data);
         this.utenteA = utenteA;
     }
@@ -25,7 +27,9 @@ public class IngressiAbbonati extends Ingressi{
     }
 
     public String toString() {
-        return "DATA INGRESSO: " + this.getData() + "\t" + "Nome e Cognome utente: " + utenteA.getNome() + " " + utenteA.getCognome() + "\t" + utenteA.getCodiceUtenteAbbonato();
+        DateTimeFormatter formattaData = DateTimeFormatter.ofPattern("dd/M/yyyy");
+        String dataStampa = this.getData().format(formattaData);
+        return "DATA INGRESSO: " + dataStampa + "\t" + "Nome Utente: " + utenteA.getNome() + "  Cognome utente " + utenteA.getCognome();
     }
 
     public UtenteAbbonato getUtente() {

@@ -1,10 +1,16 @@
 package piscina;
 
+import java.io.Serializable;
+import java.sql.Array;
+import java.text.ParseException;
+import java.time.DateTimeException;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.lang.*;
 
-public class GestionePiscina {
+public class GestionePiscina implements Serializable {
     /* inizializzo le seguenti variabili:
         - input: il nostro scanner per interagire con l'utente;
         - vettoreAbbonamenti: per aggiungere/rimuovere gli ingressi;
@@ -32,7 +38,13 @@ public class GestionePiscina {
     public void aggiungiIngresso() {
         //chiedo all'utente la data
         System.out.println("Stai aggiungendo un nuovo ingresso");
-        Date dataIngresso = chiediData();
+        LocalDate dataIngresso = chiediData();
+        boolean controlloData = controllaFestivi(dataIngresso);
+        if (controlloData) {
+            System.out.println("Non puoi inserire un ingresso quando è chiusa la piscina.");
+            System.out.println("Inserisci un'altra data");
+            chiediData();
+        }
         String info = "";
         System.out.println("Premi A se l'ingresso e' di un utente ABBONATO o N se non e' abbonato");
 
@@ -44,6 +56,7 @@ public class GestionePiscina {
                 // inserisco nome e cognome
                 System.out.println("Inserisci il nome dell'utente");
                 String nome = input.nextLine();
+                nome = input.nextLine();
                 System.out.println("Inserisci il cognome dell'utente");
                 //inserisco il cognome
                 String cognome = input.nextLine();
@@ -61,35 +74,52 @@ public class GestionePiscina {
                 //controllare anche la data per vedere se è feriale o festivo
                 int eta = input.nextInt();
                 UtenteNonAbbonato utenteNonAbbonato = new UtenteNonAbbonato(eta);
-                utenteNonAbbonato.setPrezzoBiglietto();
                 double prezzo = utenteNonAbbonato.getPrezzoBiglietto();
                 //casto a string
                 IngressiNonAbbonati nuovoIngressoNonAbbonati = new IngressiNonAbbonati(dataIngresso, utenteNonAbbonato, prezzo);
                 IngressiTOT.add(nuovoIngressoNonAbbonati);
                 System.out.println("Ingresso inserito");
+                break;
         }
     }
 
 
     // visualizzare la lista degli ingressi di uno specifico mese in ORDINE di data
+    Comparator<Ingressi> OrdinaIngressi = new Comparator<Ingressi>() {
+        @Override
+        public int compare(Ingressi i1, Ingressi i2) {
+            return i1.getData().compareTo(i2.getData());
+        }
+    };
 
     public void IngressiMensiliOrdinati() {
-
+        System.out.println("Inserisci il mese di cui vuoi sapere gli ingressi");
+        int mese = input.nextInt();
+        System.out.println("Inserisci l'anno di cui vuoi sapere gli ingressi");
+        int anno = input.nextInt();
+        Collections.sort(IngressiTOT, OrdinaIngressi);
+        for (Ingressi ingresso : IngressiTOT) {
+            ingresso.getData();
+        }
+        visualizzaIngresso();
     }
+
 
     // visualizzare la lista degli ingressi di uno specifico giorno (da finire di sistemare, non sono molto convinta )
     public void IngressiGiornalieri() {
         System.out.println("Inserisci la data di cui vuoi sapere gli ingressi");
-        Date d = chiediData();
-
-        Date data = Ingressi.getData();
-        if (data == d) {
-            Ingressi giornaliero = new Ingressi(d);
-            System.out.println("Elenco ingressi di uno specifico giorno: " + giornaliero.toString());
+        LocalDate d = chiediData();
+        for (Ingressi i : IngressiTOT) {
+            LocalDate dataCercata = i.getData();
+            if (d == dataCercata) {
+                //mi sa che va salvato tutto in un array e poi stampato. O qualcosa del genere
+                Ingressi giornaliero = new Ingressi(d);
+                System.out.println("Elenco ingressi di uno specifico giorno: " + giornaliero.toString());
+            }
         }
     }
 
-
+    //visualizza gli ingressi di uno specifico utente abbonato
     public void IngressiUtenteAbbonato() {
         System.out.println("Stai visualizzando gli ingressi di un utente abbonato.");
         System.out.println("Inserisci il nome dell'utente");
@@ -140,48 +170,53 @@ public class GestionePiscina {
 
 
     // creo un metodo ausiliario per chiedere la data all'utente
-    private Date chiediData() {
-        System.out.println("Vuoi inserire un ingresso nel giorno attuale? [S] [N]");
-        char scelta = input.next().charAt(0);
-        if (scelta == 'S' || scelta == 's') {
-            Date data = new Date();
-        } else {
-            System.out.println("Inserisci una data in formato DD/MM/YYYY");
-            String d1 = input.nextLine();
-            // inserire un controllo sulla correttezza della data (try catch)
 
-            DateTimeFormatter formattaData = DateTimeFormatter.ofPattern("d/MM/yyyy");
-            data = Date(d1, formattaData);
-        }
-        boolean controlloData = controllaFestivi(data);
-        if (!controlloData) {
-            System.out.println("Non puoi inserire un ingresso quando è chiusa la piscina");
-        }
-        //controllare anche la data per vedere se è feriale o festivo
-        return data;
-    }
-
-    private boolean controllaFestivi(LocalDateDate data) {
-        boolean weekend = false;
-
-        switch (data.getDayOfWeek()) {
-            case SUNDAY:
-                weekend = true;
-                break;
-            case MONDAY:
-                //ECCEZIONE2
-                weekend = true;
-                break;
-        }
-        return weekend;
-    }
 
     public void visualizzaIngresso() {
         System.out.println("----------------Elenco totale ingressi-----------------");
-
         for (Object ingresso : IngressiTOT) {
             System.out.println(ingresso);
         }
     }
 
+    private boolean controllaFestivi(LocalDate data) {
+        boolean weekend = false;
+        if ((data.getDayOfWeek().equals(DayOfWeek.SUNDAY) ||
+                data.getDayOfWeek().equals(DayOfWeek.MONDAY))) {
+            weekend = true;
+        }
+        return weekend;
+    }
+
+    private LocalDate chiediData() {
+        LocalDate data = null;
+        boolean ok = true;
+        do {
+            System.out.println("Vuoi inserire un ingresso nel giorno attuale? [S] [N]");
+            try {
+                char scelta = input.next().charAt(0);
+                if (scelta == 'S' || scelta == 's') {
+                    data = LocalDate.now();
+                }
+                if (scelta == 'N' || scelta == 'n') {
+                    System.out.println("Inserisci una data in formato DD/MM/YYYY");
+                    input.nextLine();
+                }
+            } catch (InputMismatchException e) {
+                input.nextLine();
+                System.out.println("Inserisci S o N");
+                ok = false;
+            }
+
+            try {
+                String d1 = input.nextLine();
+                // inserire un controllo sulla correttezza della data (try catch)
+                DateTimeFormatter formattaData = DateTimeFormatter.ofPattern("dd/M/yyyy");
+                data = LocalDate.parse(d1, formattaData);
+            } catch (DateTimeException e) {
+                System.out.println("Hai inserito una data errata. Controlla");
+            }
+        } while (!ok);
+        return data;
+    }
 }

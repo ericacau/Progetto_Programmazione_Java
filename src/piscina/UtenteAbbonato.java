@@ -8,7 +8,7 @@ public class UtenteAbbonato {
 
 	String nome;
 	String cognome; 
-	private static int codiceUtenteAbbonato = 0;//COSTANTE
+	private static int codiceUtenteAbbonato = 0;
 
 	//costruttore
 		public UtenteAbbonato(String nome, String cognome) {
@@ -19,7 +19,7 @@ public class UtenteAbbonato {
 
 
 		//metodo per visualizzare il codice utente abbonato
-		public static int getCodiceUtenteAbbonato() {
+		public int getCodiceUtenteAbbonato() {
 			return codiceUtenteAbbonato;
 		}
 

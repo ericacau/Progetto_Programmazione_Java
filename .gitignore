@@ -1,0 +1,6 @@
+
+*.driveupload
+
+*.ini
+
+.tmp.drivedownload/
