@@ -1,6 +1,9 @@
 package piscina;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.TimeZone;
+import java.time.*;
+
+//import java.util.TimeZone;
 
 public class GestionePiscina {
     /* inizializzo le seguenti variabili:
@@ -30,15 +33,21 @@ public class GestionePiscina {
     public void aggiungiIngresso() {
         //chiedo all'utente la data
         System.out.println("Stai aggiungendo un nuovo ingresso");
-        Calendar dataIngresso = chiediData();
+
+        LocalDate dataIngresso = chiediData();
         String info = "";
-        
+
+        System.out.print("Prima però è necessario controllare la temperatura dell'utente, come descritto nella ormativa anti-Covid. \n Inserisci la temperatura \n");
+        double temperatura = input.nextDouble();;
+        if ((dataIngresso.getYear() > 2020) && (dataIngresso.getMonthValue() > 3)) {
+            controllaTemperatura(temperatura);
+        }
         System.out.println("Premi A se l'ingresso e' di un utente ABBONATO o N se non e' abbonato");
 
         char scelta;
         scelta = input.next().charAt(0);
         switch (scelta) {
-            case 'A': 
+            case 'A':
             case 'a':
                 // inserisco nome e cognome
                 System.out.println("Inserisci il nome dell'utente");
@@ -70,7 +79,6 @@ public class GestionePiscina {
     }
 
 
-    
     // visualizzare la lista degli ingressi di uno specifico mese in ORDINE di data
 
     public void IngressiMensiliOrdinati() {
@@ -80,39 +88,41 @@ public class GestionePiscina {
     // visualizzare la lista degli ingressi di uno specifico giorno (da finire di sistemare, non sono molto convinta )
     private void IngressiGiornalieri() {
         System.out.println("Inserisci la data di cui vuoi sapere gli ingressi");
-        Calendar d = chiediData();
-        
-        Calendar data = Ingressi.getData();
-        if (data  == d) {
+        LocalDate d = chiediData();
+        LocalDate data = Ingressi.getData();
+
+        if (data == d) {
             Ingressi giornaliero = new Ingressi(d);
-            System.out.println("Elenco ingressi di uno specifico giorno: " +giornaliero.toString());
+            System.out.println("Elenco ingressi di uno specifico giorno: " + giornaliero.toString());
         }
     }
 
     // visualizzare l'elenco di tutti gli ingressi di uno specifico utente abbonato
-     
+
     private void IngressiUtenteAbbonato() {
         System.out.println("Inserisci il nome dell'utente");
         String nomeUtente = input.nextLine();
         System.out.println("Inserisci il cognome dell'utente");
         String cognomeUtente = input.nextLine();
         IngressiAbbonati iA = null;
-        if(i instanceof IngressiAbbonati){
-            iA = (IngressiAbbonati)i;
-      
-            UtenteAbbonato utente = iA.getUtenteA();
-      
-            String nomeUtenteAbbonato = utente.getNome();
-            String cognomeUtenteAbbonato = utente.getCognome();
-            //controllo il nome dell'utente e il cognome
-            boolean controllo = utente.equals(nomeUtente, cognomeUtente);
-            System.out.println("VAL BOOL: " + controllo);
-            if (controllo){
-                 System.out.println(iA.toString());
+        for (Ingressi i : IngressiTOT) {
+            if (i instanceof IngressiAbbonati) {
+                iA = (IngressiAbbonati) i;
+
+                UtenteAbbonato utente = iA.getUtenteA();
+
+                String nomeUtenteAbbonato = utente.getNome();
+                String cognomeUtenteAbbonato = utente.getCognome();
+                //controllo il nome dell'utente e il cognome
+                boolean controllo = utente.equals(nomeUtente, cognomeUtente);
+                System.out.println("VAL BOOL: " + controllo);
+                if (controllo) {
+                    System.out.println(iA.toString());
+                }
             }
-            } 
+        }
     }
-    
+
     // visualizzare l'elenco degli incassi giornalieri di uno specifico mese
     public void IncassiMensili() {
 
@@ -125,7 +135,7 @@ public class GestionePiscina {
     }
 
     //visualizzare il numero di ingressi ridotti
-    public  void  IngressiRidotti() {
+    public void IngressiRidotti() {
         for (Ingressi i : IngressiTOT) {
             if (i instanceof IngressiNonAbbonati) {
                 IngressiNonAbbonati nonabb = (IngressiNonAbbonati) i; //down cast
@@ -140,43 +150,61 @@ public class GestionePiscina {
 
 
     // creo un metodo ausiliario per chiedere la data all'utente
-    private Calendar chiediData() {
-        Calendar data;
+    private LocalDate chiediData() {
+        LocalDate data;
         System.out.println("Vuoi inserire un ingresso nel giorno attuale? [S] [N]");
         char scelta = input.next().charAt(0);
         if (scelta == 'S' || scelta == 's') {
-            data = Calendar.getInstance();
-        } else{ System.out.println("Inserisci una data in formato DD/MM/YYYY");
-        String d1 = input.nextLine();
-        /* inserire un controllo sulla correttezza della data (try catch)
-        DateTimeFormatter formattaData = DateTimeFormatter.ofPattern("d/MM/yyyy");
-        data = LocalDate.parse(d1, formattaData);*/
-    }
+            data = LocalDate.now();
+        } else {
+            System.out.println("Inserisci una data in formato DD/MM/YYYY");
+            String d1 = input.nextLine();
+            // inserire un controllo sulla correttezza della data (try catch)
+            DateTimeFormatter formattaData = DateTimeFormatter.ofPattern("d/MM/yyyy");
+            data = LocalDate.parse(d1, formattaData);
+        }
         boolean controlloData = controllaFestivi(data);
-        if(!controlloData)
-
-    {
-        System.out.println("Non puoi inserire un ingresso quando è chiusa la piscina");
-    }
-    //controllare anche la data per vedere se è feriale o festivo
+        if (!controlloData) {
+            System.out.println("Non puoi inserire un ingresso quando è chiusa la piscina");
+        }
+        //controllare anche la data per vedere se è feriale o festivo
         return data;
-}
+    }
 
-    private boolean controllaFestivi(Calendar data) {
+
+    private boolean controllaFestivi(LocalDate data) {
         boolean weekend = false;
 
-        switch (data.getFirstDayOfWeek()) { //questo metodo non è corretto
+        switch (data.getDayOfWeek()) {
             case SUNDAY:
                 weekend = true;
                 break;
             case MONDAY:
                 //ECCEZIONE2
-                weekend = true;
+                weekend = false;
                 break;
         }
-        if data
+        //f data
         return weekend;
     }
+
+
+    /* metodo che controlla la temperatura dell'utente prima di entrare in piscina (introdotta per l'emergenza Covid-19)
+        * Se la temperatura è inferirore a 37° l'utente può entrare nella piscina*
+    */
+    public void controllaTemperatura(double temperatura) {
+        boolean temperaturaOK = true;
+        try {
+            if (temperatura >= 37) {
+                temperaturaOK = false;
+                System.out.println("Siamo spiacenti, ma la sua temperatura è superiore a 37 gradi e, come descritto nel protocollo anti-covid, l'accesso non è consentito");
+            } else
+                System.out.println("La sua temperatura è inferiore a 37, accesso consentito");
+        } catch (InputMismatchException e) {
+            if ((temperatura < 34) || (temperatura > 41))
+                System.out.println("Il valore della temperatura non è corretto, misurare nuovamente la temperatura");
+        }
+    } //try-catch da sistemare
 
     public void visualizzaIngresso() {
         System.out.println("----------------Elenco totale ingressi-----------------");
@@ -186,5 +214,7 @@ public class GestionePiscina {
         }
     }
 
-
 }
+
+
+

@@ -1,6 +1,6 @@
 package piscina;
 
-import java.util.Scanner;
+import java.util.*;
 
 // asdfghjk
 public class UtenteNonAbbonato {
@@ -34,7 +34,12 @@ public class UtenteNonAbbonato {
     }
 
     public int getEta() {
-        return eta;
+      /*  try {
+        } catch (InputMismatchException e) {
+            if ((eta < 0) || eta > 115)
+               System.out.println("Valore della data errato");
+        }*/
+        return  eta;
     }
 
     public boolean getRidottoBambiniEAnziani(){

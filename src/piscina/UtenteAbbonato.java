@@ -19,14 +19,17 @@ public class UtenteAbbonato {
 
 		//metodo per visualizzare il codice utente abbonato
 		public static int getCodiceUtenteAbbonato() {
+
 			return codiceUtenteAbbonato;
 		}
 
 		public String getNome() {
+
 			return nome;
 		}
 
 		public String getCognome() {
+
 			return cognome;
 		}
 
