@@ -16,10 +16,12 @@ public class Piscina {
 
         //leggo il file in input ingressiPiscina.dat
         try {
+
             inputStream = new ObjectInputStream(new FileInputStream(nomeFile));
             ingressi = (Vector<Ingressi>) inputStream.readObject(); //conversione di tipo anche qui
             System.out.println("Lettura del file in corso...");
             inputStream.close();
+
         } catch (FileNotFoundException e) {
             System.out.println("Errore. File non trovato");
         } catch (IOException e) {
@@ -27,6 +29,7 @@ public class Piscina {
         } catch (ClassNotFoundException e) {
             System.out.println("Errore nella lettura degli ingressi da file.");
         }
+
         if (ingressi.isEmpty()) {
             System.out.println("Il file ingressi è vuoto. Inserisci degli ingressi per poter salvare un nuovo file.");
         }
@@ -36,6 +39,7 @@ public class Piscina {
         //    sugli ingressi richiamando i metodi della classe GestionePiscina
 
         GestionePiscina nuovoIngresso = new GestionePiscina(ingressi);
+
         System.out.println("Benvenuto nel pannello di controllo degli ingressi della piscina \"La Sirena\". Ecco le possibili operazioni");
         char scelta;
         do {
@@ -57,6 +61,7 @@ public class Piscina {
                     case 'A':
                     case 'a':
                         //invoco il metodo per aggiungere l'ingresso
+                        //ok!
                         nuovoIngresso.aggiungiIngresso();
                         nuovoIngresso.visualizzaIngresso();
                         break;
@@ -68,6 +73,7 @@ public class Piscina {
                     case 'C':
                     case 'c':
                         //ingressi mese specifico IN ORDINE
+
                         nuovoIngresso.IngressiMensiliOrdinati();
                         break;
                     case 'D':
@@ -120,7 +126,6 @@ public class Piscina {
                 input.nextLine();
             }
         } while (scelta != 'U' || scelta != 'u');
-
         input.close();
     }
 }

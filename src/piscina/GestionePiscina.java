@@ -17,6 +17,7 @@ public class GestionePiscina implements Serializable {
         - info: stringa per costruire le informazioni sull'ingresso (conterrà
                 il prezzo o il nome/cognome dell'utente)
      */
+    private DateTimeFormatter formattaData = DateTimeFormatter.ofPattern("d/M/yyyy");
     private Scanner input = new Scanner(System.in);
     private Vector<Ingressi> IngressiTOT;
     /*vettore IngressiTOT: contiene tutti gli ingressi definiti
@@ -94,14 +95,24 @@ public class GestionePiscina implements Serializable {
 
     public void IngressiMensiliOrdinati() {
         System.out.println("Inserisci il mese di cui vuoi sapere gli ingressi");
-        int mese = input.nextInt();
+        int meseInserito = input.nextInt();
         System.out.println("Inserisci l'anno di cui vuoi sapere gli ingressi");
-        int anno = input.nextInt();
+        int annoInserito = input.nextInt();
+        String ingrMese = "01/"+ meseInserito + "/" + annoInserito;
+        LocalDate ingressiDelMese = LocalDate.parse(ingrMese, formattaData);
+
+        //ordino il vettore
         Collections.sort(IngressiTOT, OrdinaIngressi);
+        //mi calcolo quanti giorni ha il mese passato come intero
         for (Ingressi ingresso : IngressiTOT) {
-            ingresso.getData();
+            LocalDate dataIngresso = ingresso.getData();
+            if(dataIngresso.getYear() == annoInserito){
+                if(dataIngresso.getMonthValue()==meseInserito){
+                    visualizzaIngresso();
+                }
+            }
+
         }
-        visualizzaIngresso();
     }
 
 
@@ -211,7 +222,6 @@ public class GestionePiscina implements Serializable {
             try {
                 String d1 = input.nextLine();
                 // inserire un controllo sulla correttezza della data (try catch)
-                DateTimeFormatter formattaData = DateTimeFormatter.ofPattern("dd/M/yyyy");
                 data = LocalDate.parse(d1, formattaData);
             } catch (DateTimeException e) {
                 System.out.println("Hai inserito una data errata. Controlla");
