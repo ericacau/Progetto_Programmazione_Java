@@ -3,8 +3,7 @@ package piscina;
 import java.util.*;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+
 
 public class Piscina {
     public static void main(String[] args) {
@@ -66,8 +65,8 @@ public class Piscina {
 
                 case 'E':
                 case 'e':
-                    System.out.println("Stai visualizzando gli ingressi di uno specifico utente abbonato");
-                    nuovoIngresso.IngressiUtenteAbbonato();
+                 //   System.out.println("Stai visualizzando gli ingressi di uno specifico utente abbonato");
+                 //   nuovoIngresso.IngressiUtenteAbbonato();
                     break;
 
 
@@ -83,8 +82,8 @@ public class Piscina {
 
                 case 'H':
                 case 'h':
-                    
-                    //GestionePiscina ridotti = ridotti.IngressiRidotti();
+                    //System.out.println("Stai visualizzando gli ingressi ridotti: ");
+                    //nuovoIngresso.IngressiRidotti();
 
                     break;
                 default:

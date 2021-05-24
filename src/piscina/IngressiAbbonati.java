@@ -1,7 +1,6 @@
 package piscina;
 
-import java.time.LocalDate;
-
+import java.util.*;
 /*CLASSE INGRESSIABBONATI 
     Estensione della superclasse Ingressi che gestisce gli ingressi degli utenti abbonati contenenti
     * data du ingresso
@@ -12,7 +11,7 @@ import java.time.LocalDate;
 public class IngressiAbbonati extends Ingressi{
     private UtenteAbbonato utenteA;
 
-    public IngressiAbbonati(LocalDate data, UtenteAbbonato utenteA) {
+    public IngressiAbbonati(Calendar data, UtenteAbbonato utenteA) {
         super(data);
         this.utenteA = utenteA;
     }
@@ -26,7 +25,7 @@ public class IngressiAbbonati extends Ingressi{
     }
 
     public String toString() {
-        return "DATA INGRESSO: " + this.getData() + "\t" + "Nome e Cognome utente: " + utenteA.getNome() + " " + utenteA.getCognome() + "\t" + utenteA.getCodiceUtenteAbbonato();
+        return "DATA INGRESSO: " + Ingressi.getData() + "\t" + "Nome e Cognome utente: " + utenteA.getNome() + " " + utenteA.getCognome() + "\t" + utenteA.getCodiceUtenteAbbonato();
     }
 }
 

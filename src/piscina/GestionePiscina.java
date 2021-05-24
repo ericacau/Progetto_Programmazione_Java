@@ -1,12 +1,6 @@
 package piscina;
-
-import java.time.DayOfWeek;
 import java.util.*;
-
-import javax.xml.crypto.Data;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.util.TimeZone;
 
 public class GestionePiscina {
     /* inizializzo le seguenti variabili:
@@ -32,12 +26,11 @@ public class GestionePiscina {
         * Chiedo all'utente di scegliere tra utente abbonato (opizione A/a) o non abbonato (N/n)
            e in base alla sua scelta aggiundo un ingressi abbonato o non abbonato richiamando 
            i metodi delle classi utenteAbbonnato e utenteNonAbbonato
-
     */
     public void aggiungiIngresso() {
         //chiedo all'utente la data
         System.out.println("Stai aggiungendo un nuovo ingresso");
-        LocalDate dataIngresso = chiediData();
+        Calendar dataIngresso = chiediData();
         String info = "";
         
         System.out.println("Premi A se l'ingresso e' di un utente ABBONATO o N se non e' abbonato");
@@ -87,9 +80,9 @@ public class GestionePiscina {
     // visualizzare la lista degli ingressi di uno specifico giorno (da finire di sistemare, non sono molto convinta )
     private void IngressiGiornalieri() {
         System.out.println("Inserisci la data di cui vuoi sapere gli ingressi");
-        LocalDate d = chiediData();
+        Calendar d = chiediData();
         
-        LocalDate data = Ingressi.getData();
+        Calendar data = Ingressi.getData();
         if (data  == d) {
             Ingressi giornaliero = new Ingressi(d);
             System.out.println("Elenco ingressi di uno specifico giorno: " +giornaliero.toString());
@@ -97,32 +90,29 @@ public class GestionePiscina {
     }
 
     // visualizzare l'elenco di tutti gli ingressi di uno specifico utente abbonato
-       // visualizzare l'elenco di tutti gli ingressi di uno specifico utente abbonat
-
+     
+    private void IngressiUtenteAbbonato() {
+        System.out.println("Inserisci il nome dell'utente");
         String nomeUtente = input.nextLine();
         System.out.println("Inserisci il cognome dell'utente");
         String cognomeUtente = input.nextLine();
-        IngressiAbbonati iA = null
-
-            if(i instanceof IngressiAbbonati){
-                iA = (IngressiAbbonati)i;
+        IngressiAbbonati iA = null;
+        if(i instanceof IngressiAbbonati){
+            iA = (IngressiAbbonati)i;
       
-                UtenteAbbonato utente = iA.getUtente();
+            UtenteAbbonato utente = iA.getUtenteA();
       
-                String nomeUtenteAbbonato = utente.getNome();
-                String cognomeUtenteAbbonato = utente.getCognome();
-                //controllo il nome dell'utente e il cognome
-                boolean controllo = utente.equals(nomeUtente, cognomeUtente);
-                 System.out.println("VAL BOOL: " + controllo);
-                (controllo){
-                    System.out.println(iA.toString());
-                }
+            String nomeUtenteAbbonato = utente.getNome();
+            String cognomeUtenteAbbonato = utente.getCognome();
+            //controllo il nome dell'utente e il cognome
+            boolean controllo = utente.equals(nomeUtente, cognomeUtente);
+            System.out.println("VAL BOOL: " + controllo);
+            if (controllo){
+                 System.out.println(iA.toString());
+            }
             } 
-        }
-
     }
-
-
+    
     // visualizzare l'elenco degli incassi giornalieri di uno specifico mese
     public void IncassiMensili() {
 
@@ -150,17 +140,17 @@ public class GestionePiscina {
 
 
     // creo un metodo ausiliario per chiedere la data all'utente
-    private LocalDate chiediData() {
-        LocalDate data;
+    private Calendar chiediData() {
+        Calendar data;
         System.out.println("Vuoi inserire un ingresso nel giorno attuale? [S] [N]");
         char scelta = input.next().charAt(0);
         if (scelta == 'S' || scelta == 's') {
-            data = LocalDate.now();
+            data = Calendar.getInstance();
         } else{ System.out.println("Inserisci una data in formato DD/MM/YYYY");
         String d1 = input.nextLine();
-        // inserire un controllo sulla correttezza della data (try catch)
+        /* inserire un controllo sulla correttezza della data (try catch)
         DateTimeFormatter formattaData = DateTimeFormatter.ofPattern("d/MM/yyyy");
-        data = LocalDate.parse(d1, formattaData);
+        data = LocalDate.parse(d1, formattaData);*/
     }
         boolean controlloData = controllaFestivi(data);
         if(!controlloData)
@@ -172,10 +162,10 @@ public class GestionePiscina {
         return data;
 }
 
-    private boolean controllaFestivi(LocalDate data) {
+    private boolean controllaFestivi(Calendar data) {
         boolean weekend = false;
 
-        switch (data.getDayOfWeek()) {
+        switch (data.getFirstDayOfWeek()) { //questo metodo non è corretto
             case SUNDAY:
                 weekend = true;
                 break;
