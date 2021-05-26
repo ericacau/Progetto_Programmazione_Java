@@ -14,33 +14,37 @@ public class Piscina {
         ObjectInputStream inputStream;
         String nomeFile = "ingressiPiscina";
 
+        System.out.println("Benvenuto nel pannello di controllo degli ingressi della piscina \"La Sirena\"");
+        System.out.println("Leggo il file di ingressi di default della piscina...\n");
+        GestionePiscina nuovoIngresso = new GestionePiscina(ingressi);
+
         //leggo il file in input ingressiPiscina.dat
         try {
-
             inputStream = new ObjectInputStream(new FileInputStream(nomeFile));
             ingressi = (Vector<Ingressi>) inputStream.readObject(); //conversione di tipo anche qui
-            System.out.println("Lettura del file in corso...");
             inputStream.close();
-
         } catch (FileNotFoundException e) {
-            System.out.println("Errore. File non trovato");
+            System.out.println("File non trovato! \n");
         } catch (IOException e) {
-            System.out.println("Errore nella lettura del file di input." + nomeFile);
+            System.out.println("Errore nella lettura del file di input: " + nomeFile);
         } catch (ClassNotFoundException e) {
             System.out.println("Errore nella lettura degli ingressi da file.");
         }
 
+        //controllo se il vettore è vuoto. Se ha degli ingressi, accedo al menù
+        //se non vi sono ingressi, procedo direttamente all'aggiunta di un nuovo ingresso
         if (ingressi.isEmpty()) {
-            System.out.println("Il file ingressi è vuoto. Inserisci degli ingressi per poter salvare un nuovo file.");
-        }
+            System.out.println("Procedi all'inserimento di un ingresso prima di accedere al menu'.");
+            nuovoIngresso.aggiungiIngresso();
+        } else
+            System.out.println("È stato caricato correttamente il file di ingressi nella Piscina. Che cosa vuoi fare?");
+
+        System.out.println("\n\n\nEcco le possibili operazioni che puoi compiere");
 
         /*-------MENU--------*/
-        //l'utente in base alla lettera scelta dall'utente (da A a H) potrà effettuare le varie operazioni
+        //l'utente in base alla lettera scelta (da A a G), potrà effettuare le varie operazioni
         //    sugli ingressi richiamando i metodi della classe GestionePiscina
 
-        GestionePiscina nuovoIngresso = new GestionePiscina(ingressi);
-
-        System.out.println("Benvenuto nel pannello di controllo degli ingressi della piscina \"La Sirena\". Ecco le possibili operazioni");
         char scelta;
         do {
             System.out.println("\n");
@@ -51,7 +55,7 @@ public class Piscina {
             System.out.println("E - Visualizzare gli incassi giornalieri di uno specifico mese");
             System.out.println("F - Visualizzare l'elenco con il numero di ingressi in abbonamento giornalieri di uno specifico mese");
             System.out.println("G - Visualizzare gli ingressi senza abbonamento e con riduzione di uno specifico mese");
-            System.out.println("S - Salva gli ingressi inseriti su fileS");
+            System.out.println("S - Salva gli ingressi inseriti su file");
             System.out.println("U - Uscita");
             System.out.println("\nCosa vuoi fare?");
             scelta = input.next().charAt(0);

@@ -11,13 +11,15 @@ import java.util.*;
 import java.lang.*;
 
 public class GestionePiscina implements Serializable {
+
     /* inizializzo le seguenti variabili:
         - input: il nostro scanner per interagire con l'utente;
         - vettoreAbbonamenti: per aggiungere/rimuovere gli ingressi;
         - info: stringa per costruire le informazioni sull'ingresso (conterrà
                 il prezzo o il nome/cognome dell'utente)
      */
-    private DateTimeFormatter formattaData = DateTimeFormatter.ofPattern("d/M/yyyy");
+
+    private DateTimeFormatter formattaData = DateTimeFormatter.ofPattern("d/MM/yyyy");
     private Scanner input = new Scanner(System.in);
     private Vector<Ingressi> IngressiTOT;
     /*vettore IngressiTOT: contiene tutti gli ingressi definiti
@@ -38,52 +40,56 @@ public class GestionePiscina implements Serializable {
     */
     public void aggiungiIngresso() {
         //chiedo all'utente la data
-        System.out.println("Stai aggiungendo un nuovo ingresso");
         LocalDate dataIngresso = chiediData();
-        boolean controlloData = controllaFestivi(dataIngresso);
+        boolean temperaturaok = true;
+        boolean controlloData = controllaData(dataIngresso);
         if (controlloData) {
             System.out.println("Non puoi inserire un ingresso quando è chiusa la piscina.");
             System.out.println("Inserisci un'altra data");
             chiediData();
         }
-        String info = "";
-        System.out.println("Premi A se l'ingresso e' di un utente ABBONATO o N se non e' abbonato");
+        if (dataIngresso.getYear() >= 2020) {
+            if ((dataIngresso.getMonthValue() >= 06)) {
+                System.out.print("Prima di inserire l'ingresso e' necessario controllare la temperatura dell'utente.\nInserisci la temperatura\n");
+                double temperatura = input.nextDouble();
+                temperaturaok = controllaTemperatura(temperatura);
+
+            }
+        }
+        if(temperaturaok){
+            System.out.println("Premi A se l'ingresso e' di un utente ABBONATO o N se non e' abbonato");
 
         char scelta;
         scelta = input.next().charAt(0);
         switch (scelta) {
             case 'A':
             case 'a':
-                // inserisco nome e cognome
                 System.out.println("Inserisci il nome dell'utente");
                 String nome = input.nextLine();
+                //rimuovo lo spazio dopo l'inserimento del nome
                 nome = input.nextLine();
                 System.out.println("Inserisci il cognome dell'utente");
-                //inserisco il cognome
                 String cognome = input.nextLine();
-                // creo un nuovo utente abbonato e un nuovo ingressi
+                // creo un nuovo utente abbonato e un nuovo ingresso
                 UtenteAbbonato utenteAbbonato = new UtenteAbbonato(nome, cognome);
                 IngressiAbbonati nuovoIngressoAbbonati = new IngressiAbbonati(dataIngresso, utenteAbbonato);
                 //inserisco l'ingresso appena creato nel vettore IngressiTOT
                 IngressiTOT.add(nuovoIngressoAbbonati);
-                System.out.println("Ingresso inserito");
+                System.out.println("Ingresso inserito!");
                 break;
             case 'N':
             case 'n':
                 System.out.println("Hai selezionato \"utente non abbonato.\"");
                 System.out.println("Sono disponibili delle riduzioni sul prezzo giornaliero\nInserisci l'eta' dell'utente");
-                //controllare anche la data per vedere se è feriale o festivo
                 int eta = input.nextInt();
                 UtenteNonAbbonato utenteNonAbbonato = new UtenteNonAbbonato(eta);
                 double prezzo = utenteNonAbbonato.getPrezzoBiglietto();
-                //casto a string
                 IngressiNonAbbonati nuovoIngressoNonAbbonati = new IngressiNonAbbonati(dataIngresso, utenteNonAbbonato, prezzo);
                 IngressiTOT.add(nuovoIngressoNonAbbonati);
                 System.out.println("Ingresso inserito");
                 break;
-        }
+        }}
     }
-
 
     // visualizzare la lista degli ingressi di uno specifico mese in ORDINE di data
     Comparator<Ingressi> OrdinaIngressi = new Comparator<Ingressi>() {
@@ -98,20 +104,18 @@ public class GestionePiscina implements Serializable {
         int meseInserito = input.nextInt();
         System.out.println("Inserisci l'anno di cui vuoi sapere gli ingressi");
         int annoInserito = input.nextInt();
-        String ingrMese = "01/"+ meseInserito + "/" + annoInserito;
+        String ingrMese = "01/" + meseInserito + "/" + annoInserito;
         LocalDate ingressiDelMese = LocalDate.parse(ingrMese, formattaData);
-
         //ordino il vettore
         Collections.sort(IngressiTOT, OrdinaIngressi);
         //mi calcolo quanti giorni ha il mese passato come intero
         for (Ingressi ingresso : IngressiTOT) {
             LocalDate dataIngresso = ingresso.getData();
-            if(dataIngresso.getYear() == annoInserito){
-                if(dataIngresso.getMonthValue()==meseInserito){
+            if (dataIngresso.getYear() == annoInserito) {
+                if (dataIngresso.getMonthValue() == meseInserito) {
                     visualizzaIngresso();
                 }
             }
-
         }
     }
 
@@ -156,7 +160,12 @@ public class GestionePiscina implements Serializable {
 
     // visualizzare l'elenco degli incassi giornalieri di uno specifico mese
     public void IncassiMensili() {
+        double incassiTOT = 0;
+        for(Ingressi i : IngressiTOT){
+            if(i instanceof IngressiNonAbbonati){
 
+            }
+        }
 
     }
 
@@ -190,13 +199,16 @@ public class GestionePiscina implements Serializable {
         }
     }
 
-    private boolean controllaFestivi(LocalDate data) {
-        boolean weekend = false;
+    private boolean controllaData(LocalDate data) {
+        boolean chiusura = false;
         if ((data.getDayOfWeek().equals(DayOfWeek.SUNDAY) ||
                 data.getDayOfWeek().equals(DayOfWeek.MONDAY))) {
-            weekend = true;
+            chiusura = true;
         }
-        return weekend;
+        if ((data.getYear() == 2020) && ((data.getMonthValue() == 03) || (data.getMonthValue() == 04) || (data.getMonthValue() == 05))) {
+            chiusura = true;
+        }
+        return chiusura;
     }
 
     private LocalDate chiediData() {
@@ -218,15 +230,50 @@ public class GestionePiscina implements Serializable {
                 System.out.println("Inserisci S o N");
                 ok = false;
             }
-
-            try {
-                String d1 = input.nextLine();
-                // inserire un controllo sulla correttezza della data (try catch)
-                data = LocalDate.parse(d1, formattaData);
-            } catch (DateTimeException e) {
-                System.out.println("Hai inserito una data errata. Controlla");
-            }
+            //try {
+            String d1 = input.nextLine();
+            data = LocalDate.parse(d1, formattaData);
+            //} //catch (DateTimeException e) {
+            // System.out.println("Hai inserito una data errata. Controlla");
+            //}
         } while (!ok);
         return data;
     }
+
+    /* metodo che controlla la temperatura dell'utente prima di entrare in piscina (introdotta per l'emergenza Covid-19)
+        * Se la temperatura è inferiore a 37° l'utente può entrare nella piscina*
+         * da sistemare la seconda istruzione dell'if
+             - per entrare, l'utente deve avere una temperatura <= 37 (prima istruzione dell'if che funziona)
+             - nell' else-if volevo mettere la correttezza del valore della temperatura, solo che quando metto (temperatura >= 41)
+                 me la considera come la prima istruzione e questa cosa va sistemata
+                 (forse va inserita in un try-catch)
+    */
+    public boolean controllaTemperatura(double temperatura) {
+        boolean temperaturaOK = true;
+        boolean ok = true;
+        do {
+            try {
+                if (temperatura >= 37.0) {
+                    //temperaturaOK = false;
+                    System.out.println("Siamo spiacenti, ma la sua temperatura e' superiore a 37 gradi e, come descritto nel protocollo anti-covid, l'accesso non e' consentito");
+                    temperaturaOK = false;
+                    break;
+
+                }
+                if ((temperatura <= 34) || (temperatura >= 41)) {
+                    System.out.println("Il valore della temperatura non e' corretto, misurare nuovamente la temperatura");
+                    temperatura = input.nextDouble();
+                    ok = false;
+                } else {
+                    System.out.println("La sua temperatura e' inferiore a 37 gradi, accesso consentito");
+                    ok = true;
+                    temperaturaOK = true;
+                }
+            } catch (InputMismatchException e) {
+                //sistemare
+            }
+        } while (!ok);
+    return temperaturaOK;
+    }
+
 }
