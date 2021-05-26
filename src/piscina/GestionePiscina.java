@@ -37,13 +37,13 @@ public class GestionePiscina {
         LocalDate dataIngresso = chiediData();
         String info = "";
 
-        System.out.print("Prima però è necessario controllare la temperatura dell'utente, come descritto nella ormativa anti-Covid. \n Inserisci la temperatura \n");
-        double temperatura = input.nextDouble();;
+        System.out.print("Prima però e' necessario controllare la temperatura dell'utente, come descritto nella ormativa anti-Covid. \n Inserisci la temperatura \n");
+        double temperatura = input.nextDouble();
         if ((dataIngresso.getYear() > 2020) && (dataIngresso.getMonthValue() > 3)) {
             controllaTemperatura(temperatura);
         }
-        System.out.println("Premi A se l'ingresso e' di un utente ABBONATO o N se non e' abbonato");
 
+        System.out.println("Premi A se l'ingresso e' di un utente ABBONATO o N se non e' abbonato");
         char scelta;
         scelta = input.next().charAt(0);
         switch (scelta) {
@@ -66,7 +66,7 @@ public class GestionePiscina {
             case 'n':
                 System.out.println("Hai selezionato \"utente non abbonato.\"");
                 System.out.println("Sono disponibili delle riduzioni sul prezzo giornaliero\nInserisci l'eta' dell'utente");
-                //controllare anche la data per vedere se è feriale o festivo
+                //controllare anche la data per vedere se e' feriale o festivo
                 int eta = input.nextInt();
                 UtenteNonAbbonato utenteNonAbbonato = new UtenteNonAbbonato(eta);
                 utenteNonAbbonato.setPrezzoBiglietto();
@@ -165,9 +165,9 @@ public class GestionePiscina {
         }
         boolean controlloData = controllaFestivi(data);
         if (!controlloData) {
-            System.out.println("Non puoi inserire un ingresso quando è chiusa la piscina");
+            System.out.println("Non puoi inserire un ingresso quando e' chiusa la piscina");
         }
-        //controllare anche la data per vedere se è feriale o festivo
+        //controllare anche la data per vedere se e' feriale o festivo
         return data;
     }
 
@@ -190,31 +190,31 @@ public class GestionePiscina {
 
 
     /* metodo che controlla la temperatura dell'utente prima di entrare in piscina (introdotta per l'emergenza Covid-19)
-        * Se la temperatura è inferirore a 37° l'utente può entrare nella piscina*
+     * Se la temperatura e' inferirore a 37° l'utente può entrare nella piscina*
+         * da sistemare la seconda istruzione dell'if
+             - per entrare, l'utente deve avere una temperatura <= 37 (prima istruzione dell'if che funziona)
+             - nell' else-if volevo mettere la correttezza del valore della temperatura, solo che quando metto (temperatura >= 41)
+                 me la considera come la prima istruzione e questa cosa va sistemata
+                 (forse va inserita in un try-catch)
     */
+
     public void controllaTemperatura(double temperatura) {
-        boolean temperaturaOK = true;
-        try {
-            if (temperatura >= 37) {
-                temperaturaOK = false;
-                System.out.println("Siamo spiacenti, ma la sua temperatura è superiore a 37 gradi e, come descritto nel protocollo anti-covid, l'accesso non è consentito");
-            } else
-                System.out.println("La sua temperatura è inferiore a 37, accesso consentito");
-        } catch (InputMismatchException e) {
-            if ((temperatura < 34) || (temperatura > 41))
-                System.out.println("Il valore della temperatura non è corretto, misurare nuovamente la temperatura");
-        }
-    } //try-catch da sistemare
+        if (temperatura >= 37.0) {
+            //temperaturaOK = false;
+            System.out.println("Siamo spiacenti, ma la sua temperatura e' superiore a 37 gradi e, come descritto nel protocollo anti-covid, l'accesso non e' consentito");
+           } else if ((temperatura <= 34) || (temperatura >= 41)){
+               System.out.println("Il valore della temperatura non e' corretto, misurare nuovamente la temperatura");
+               temperatura = input.nextDouble();
 
-    public void visualizzaIngresso() {
+        } else
+            System.out.println("La sua temperatura e' inferiore a 37 gradi, accesso consentito");
+    }
+
+    public void visualizzaIngresso () {
         System.out.println("----------------Elenco totale ingressi-----------------");
-
         for (Object ingresso : IngressiTOT) {
             System.out.println(ingresso);
         }
     }
 
 }
-
-
-
