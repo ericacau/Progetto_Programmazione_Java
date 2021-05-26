@@ -15,17 +15,20 @@ public class Piscina {
         String nomeFile = "ingressiPiscina";
 
         System.out.println("Benvenuto nel pannello di controllo degli ingressi della piscina \"La Sirena\"");
+        System.out.println("---------------------------------------------------------------------------");
         System.out.println("Leggo il file di ingressi di default della piscina...\n");
+        //creo un oggetto nuovoIngresso per usare i metodi sugli ingressi
         GestionePiscina nuovoIngresso = new GestionePiscina(ingressi);
 
-        //leggo il file in input ingressiPiscina.dat
+        //leggo il file in input ingressiPiscina
         try {
             inputStream = new ObjectInputStream(new FileInputStream(nomeFile));
-            ingressi = (Vector<Ingressi>) inputStream.readObject(); //conversione di tipo anche qui
+            ingressi = (Vector<Ingressi>)inputStream.readObject(); //conversione di tipo anche qui
             inputStream.close();
         } catch (FileNotFoundException e) {
-            System.out.println("File non trovato! \n");
+            System.out.println("Non è presente un file di ingressi! \n");
         } catch (IOException e) {
+            System.out.println(e);
             System.out.println("Errore nella lettura del file di input: " + nomeFile);
         } catch (ClassNotFoundException e) {
             System.out.println("Errore nella lettura degli ingressi da file.");
@@ -37,17 +40,18 @@ public class Piscina {
             System.out.println("Procedi all'inserimento di un ingresso prima di accedere al menu'.");
             nuovoIngresso.aggiungiIngresso();
         } else
-            System.out.println("È stato caricato correttamente il file di ingressi nella Piscina. Che cosa vuoi fare?");
+            System.out.println("Il file di ingressi nella Piscina precedentemente salvato è stato caricato correttamente. Che cosa vuoi fare?");
 
-        System.out.println("\n\n\nEcco le possibili operazioni che puoi compiere");
+        System.out.println("\nEcco le possibili operazioni che puoi compiere:");
 
         /*-------MENU--------*/
         //l'utente in base alla lettera scelta (da A a G), potrà effettuare le varie operazioni
         //    sugli ingressi richiamando i metodi della classe GestionePiscina
-
+        System.out.println("Ingressi già inseriti:");
+        nuovoIngresso.visualizzaIngresso();
         char scelta;
         do {
-            System.out.println("\n");
+            System.out.println("");
             System.out.println("A - Aggiungere un nuovo ingresso");
             System.out.println("B - Visualizzare gli ingressi di un giorno specifico");
             System.out.println("C - Visualizzare gli ingressi di un mese specifico");
@@ -94,7 +98,6 @@ public class Piscina {
                     case 'f':
                         // elenco con il numero degli ingressi in abbonamento giornalieri di uno specifico mese
                         nuovoIngresso.IngressiAbbonatiMensili();
-
                         break;
 
                     case 'G':
@@ -113,10 +116,10 @@ public class Piscina {
                             System.out.println("File non trovato");
                         } catch (IOException e) {
                             System.out.println("Errore nella scrittura del file");
+                            System.out.println(e);
                         }
-                        System.out.println("Gli ingressi sono stati salvati nel file ingressiPiscina.dat!");
+                        System.out.println("Gli ingressi sono stati salvati nel file " + nomeFile);
                         break;
-
                     case 'U':
                     case 'u':
                         System.out.println("Uscita in corso.");

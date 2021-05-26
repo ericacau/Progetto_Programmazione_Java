@@ -1,10 +1,11 @@
 package piscina;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 
 /*CLASSE INGRESSI: Superclasse che gestisce gli ingressi (sia degli utenti abbonati che di quelli non abbonati)*/
-public class Ingressi {
+public class Ingressi implements Serializable {
     /* VARIABIlI
         * data: data dell'ingresso
         * informazioni: variano a secoda della tipologia di utenti
@@ -16,12 +17,13 @@ public class Ingressi {
 
     public Ingressi(LocalDate data) {
         this.data = data;
-        this.informazioni = informazioni;
     }
 
     public LocalDate getData() {
         return data;
     }
+
+
 }
 
 

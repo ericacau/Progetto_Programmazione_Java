@@ -1,5 +1,6 @@
 package piscina;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -10,7 +11,7 @@ import java.util.*;
     * utente -> variabile che contiene le informazioni della classe utenteAbbonato (nome e cognome)  
 
 */
-public class IngressiAbbonati extends Ingressi {
+public class IngressiAbbonati extends Ingressi implements Serializable {
     private UtenteAbbonato utenteA;
 
     public IngressiAbbonati(LocalDate data, UtenteAbbonato utenteA) {
@@ -29,7 +30,7 @@ public class IngressiAbbonati extends Ingressi {
     public String toString() {
         DateTimeFormatter formattaData = DateTimeFormatter.ofPattern("dd/M/yyyy");
         String dataStampa = this.getData().format(formattaData);
-        return "DATA INGRESSO: " + dataStampa + "\t" + "Nome Utente: " + utenteA.getNome() + "  Cognome utente " + utenteA.getCognome();
+        return "|DATA INGRESSO: " + dataStampa + "\t" + "|Nome: " + utenteA.getNome() + "  |Cognome: " + utenteA.getCognome();
     }
 
     public UtenteAbbonato getUtente() {

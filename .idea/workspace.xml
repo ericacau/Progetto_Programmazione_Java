@@ -2,15 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21b93cdd-6feb-4e70-84ca-a7d1e742cddd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProgettoJava.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ProgettoJava.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ingressiPiscina" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProgettoJava/piscina/GestionePiscina$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProgettoJava/piscina/GestionePiscina$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProgettoJava/piscina/GestionePiscina.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProgettoJava/piscina/GestionePiscina.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProgettoJava/piscina/Piscina.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProgettoJava/piscina/Piscina.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/piscina/GestionePiscina$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/piscina/GestionePiscina$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/piscina/GestionePiscina.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/piscina/GestionePiscina.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/piscina/Ingressi.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/piscina/Ingressi.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/piscina/IngressiAbbonati.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/piscina/IngressiAbbonati.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/piscina/IngressiNonAbbonati.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/piscina/IngressiNonAbbonati.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/piscina/Piscina.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/piscina/Piscina.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/piscina/UtenteAbbonato.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/piscina/UtenteAbbonato.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/piscina/UtenteNonAbbonato.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/piscina/UtenteNonAbbonato.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/piscina/GestionePiscina.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/GestionePiscina.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/piscina/Ingressi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/Ingressi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/piscina/IngressiAbbonati.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/IngressiAbbonati.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/piscina/IngressiNonAbbonati.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/IngressiNonAbbonati.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/piscina/Piscina.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/Piscina.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/piscina/UtenteAbbonato.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/UtenteAbbonato.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/piscina/UtenteNonAbbonato.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/UtenteNonAbbonato.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,12 +27,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="ProjectId" id="1t4xenwqePbHxkyxgSO7mhL6uOW" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -40,13 +56,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -60,7 +78,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1622042274170</updated>
-      <workItem from="1622042278167" duration="4795000" />
+      <workItem from="1622042278167" duration="5785000" />
+      <workItem from="1622052423042" duration="6761000" />
     </task>
     <servers />
   </component>
@@ -72,96 +91,48 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/piscina/GestionePiscina.java</url>
-          <line>50</line>
-          <option name="timeStamp" value="2" />
+          <line>106</line>
+          <option name="timeStamp" value="48" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/piscina/GestionePiscina.java</url>
-          <line>54</line>
-          <option name="timeStamp" value="5" />
+          <line>107</line>
+          <option name="timeStamp" value="49" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/piscina/GestionePiscina.java</url>
-          <line>51</line>
-          <option name="timeStamp" value="6" />
+          <line>108</line>
+          <option name="timeStamp" value="50" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/piscina/GestionePiscina.java</url>
-          <line>53</line>
-          <option name="timeStamp" value="8" />
+          <line>109</line>
+          <option name="timeStamp" value="51" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/piscina/GestionePiscina.java</url>
-          <line>274</line>
-          <option name="timeStamp" value="13" />
+          <line>110</line>
+          <option name="timeStamp" value="52" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/piscina/GestionePiscina.java</url>
-          <line>271</line>
-          <option name="timeStamp" value="15" />
+          <line>104</line>
+          <option name="timeStamp" value="53" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/piscina/GestionePiscina.java</url>
-          <line>268</line>
-          <option name="timeStamp" value="17" />
+          <line>112</line>
+          <option name="timeStamp" value="54" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/piscina/GestionePiscina.java</url>
-          <line>267</line>
-          <option name="timeStamp" value="18" />
+          <line>113</line>
+          <option name="timeStamp" value="55" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/piscina/GestionePiscina.java</url>
-          <line>265</line>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/piscina/GestionePiscina.java</url>
-          <line>264</line>
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/piscina/GestionePiscina.java</url>
-          <line>263</line>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/piscina/GestionePiscina.java</url>
-          <line>262</line>
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/piscina/GestionePiscina.java</url>
-          <line>259</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/piscina/GestionePiscina.java</url>
-          <line>257</line>
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/piscina/GestionePiscina.java</url>
-          <line>255</line>
-          <option name="timeStamp" value="29" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/piscina/GestionePiscina.java</url>
-          <line>252</line>
-          <option name="timeStamp" value="31" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/piscina/GestionePiscina.java</url>
-          <line>251</line>
-          <option name="timeStamp" value="32" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/piscina/GestionePiscina.java</url>
-          <line>250</line>
-          <properties class="piscina.GestionePiscina" method="controllaTemperatura">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="12" />
+          <line>114</line>
+          <option name="timeStamp" value="56" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

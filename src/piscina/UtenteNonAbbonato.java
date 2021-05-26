@@ -1,9 +1,10 @@
 package piscina;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 // asdfghjk
-public class UtenteNonAbbonato {
+public class UtenteNonAbbonato implements Serializable{
     /* UTENTE NON ABBONATO
 		gestisce gli oggetti utenti abbonati composti dal prezzo del biglietto che può essere di due tipi
             * INTERO (3 euro)
@@ -21,7 +22,8 @@ public class UtenteNonAbbonato {
     private double prezzoBiglietto;
     private int eta;
 
-    private Scanner input = new Scanner(System.in);
+    //imposto a static per renderlo serializzabile
+    private transient Scanner input = new Scanner(System.in);
 
 
     //costruttore dell'utente non abbonato
