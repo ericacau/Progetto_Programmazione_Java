@@ -49,7 +49,7 @@ public class GestionePiscina {
         }
         boolean temperaturaok = true;
         if ((dataIngresso.getYear() == 2020) && ((dataIngresso.getMonthValue() >= 06)) ||
-                (dataIngresso.getYear() == 2021) && ((dataIngresso.getMonthValue() >= 05))) {
+                ((dataIngresso.getYear() == 2021) && ((dataIngresso.getMonthValue() >= 05)))) {
             System.out.print("Prima di inserire l'ingresso e' necessario controllare la temperatura dell'utente.\nInserisci la temperatura\n");
             double temperatura = input.nextDouble();
             temperaturaok = controllaTemperatura(temperatura);
@@ -104,32 +104,28 @@ public class GestionePiscina {
         //mi calcolo quanti giorni ha il mese passato come intero
         for (Ingressi ingresso : IngressiTOT) {
             LocalDate dataIngresso = ingresso.getData();
-            if (dataIngresso.getYear() == ingressiMeseSpecifico.getYear()) {
-                if (dataIngresso.getMonthValue() == ingressiMeseSpecifico.getMonthValue()) {
-                    if(ingresso instanceof IngressiAbbonati){
-                        IngressiAbbonati iA = (IngressiAbbonati)ingresso;
-                        System.out.println(iA);
-                    }
-                    else {
-                        IngressiNonAbbonati nonAbb = (IngressiNonAbbonati) ingresso;
-                        System.out.println(nonAbb);
-                    }
-                }
+            if (dataIngresso.equals(ingressiMeseSpecifico)) {
+                System.out.println(ingresso);
             }
         }
     }
 
 
-    // visualizzare la lista degli ingressi di uno specifico giorno (da finire di sistemare, non sono molto convinta )
     public void IngressiGiornalieri() {
-        System.out.println("Inserisci la data di cui vuoi sapere gli ingressi");
-        LocalDate d = chiediData();
+        System.out.println("Inserisci il giorno di cui vuoi sapere gli ingressi");
+        //casto come string per leggere lo 0 iniziale
+        String giornoInserito = input.next();
+        System.out.println("Inserisci il mese di cui vuoi sapere gli ingressi");
+        String meseInserito = input.next();
+        System.out.println("Inserisci l'anno di cui vuoi sapere gli ingressi");
+        int annoInserito = input.nextInt();
+        String ingrMese = giornoInserito + "/" + meseInserito + "/" + annoInserito;
+        LocalDate ingressiGiornalieri = LocalDate.parse(ingrMese, formattaData);
+        Collections.sort(IngressiTOT, OrdinaIngressi);
         for (Ingressi i : IngressiTOT) {
-            LocalDate dataCercata = i.getData();
-            if (d == dataCercata) {
-                //mi sa che va salvato tutto in un array e poi stampato. O qualcosa del genere
-                Ingressi giornaliero = new Ingressi(d);
-                System.out.println("Elenco ingressi di uno specifico giorno: " + giornaliero.toString());
+            LocalDate dataNegliIngressi = i.getData();
+            if (dataNegliIngressi.equals(ingressiGiornalieri)) {
+                System.out.println(i);
             }
         }
     }
@@ -142,6 +138,7 @@ public class GestionePiscina {
         System.out.println("Inserisci il cognome dell'utente");
         String cognomeUtente = input.nextLine();
         IngressiAbbonati iA = null;
+        Collections.sort(IngressiTOT, OrdinaIngressi);
         for (Ingressi i : IngressiTOT) {
             if (i instanceof IngressiAbbonati) {
                 iA = (IngressiAbbonati) i;
@@ -151,7 +148,7 @@ public class GestionePiscina {
                 //controllo il nome dell'utente e il cognome
                 boolean controllo = utente.equals(nomeUtente, cognomeUtente);
                 if (controllo) {
-                    System.out.println(iA.toString());
+                    System.out.println(iA);
                 }
             }
         }
@@ -164,6 +161,7 @@ public class GestionePiscina {
         LocalDate meseSpecifico = inserisciMese();
         for (Ingressi i : IngressiTOT) {
             if (i instanceof IngressiNonAbbonati) {
+                ((IngressiNonAbbonati) i).getUtenteNA().getPrezzoBiglietto();
 
             }
         }
@@ -281,4 +279,6 @@ public class GestionePiscina {
         LocalDate ingressiDelMese = LocalDate.parse(ingrMese, formattaData);
         return ingressiDelMese;
     }
+
+
 }

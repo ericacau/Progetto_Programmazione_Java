@@ -23,7 +23,7 @@ public class Piscina {
         //leggo il file in input ingressiPiscina
         try {
             inputStream = new ObjectInputStream(new FileInputStream(nomeFile));
-            ingressi = (Vector<Ingressi>)inputStream.readObject(); //conversione di tipo anche qui
+            ingressi = (Vector<Ingressi>) inputStream.readObject(); //conversione di tipo anche qui
             inputStream.close();
         } catch (FileNotFoundException e) {
             System.out.println("Non è presente un file di ingressi! \n");
@@ -76,22 +76,25 @@ public class Piscina {
                     case 'B':
                     case 'b':
                         //ingressi giorno specifico IN ORDINE
+                        //ok!
                         nuovoIngresso.IngressiGiornalieri();
                         break;
                     case 'C':
                     case 'c':
                         //ingressi mese specifico IN ORDINE
-
+                        //ok!
                         nuovoIngresso.IngressiMensiliOrdinati();
                         break;
                     case 'D':
                     case 'd':
                         //ingressi specifico ABBONATO
+                        //ok!
                         nuovoIngresso.IngressiUtenteAbbonato();
                         break;
                     case 'E':
                     case 'e':
                         //elenco incassi giornalieri mese specifico
+                        //da scrivere
                         nuovoIngresso.IncassiMensili();
                         break;
                     case 'F':
@@ -103,6 +106,7 @@ public class Piscina {
                     case 'G':
                     case 'g':
                         //ingressi con riduzione di uno specifico mese
+                        //da sistemare
                         nuovoIngresso.IngressiRidotti();
                         break;
                     case 'S':
