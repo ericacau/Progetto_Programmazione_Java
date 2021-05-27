@@ -3,10 +3,9 @@ package piscina;
 import java.io.Serializable;
 import java.sql.Array;
 import java.text.ParseException;
-import java.time.DateTimeException;
-import java.time.DayOfWeek;
-import java.time.LocalDate;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.format.TextStyle;
 import java.util.*;
 import java.lang.*;
 
@@ -90,6 +89,7 @@ public class GestionePiscina {
     }
 
     // visualizzare la lista degli ingressi di uno specifico mese in ORDINE di data
+
     Comparator<Ingressi> OrdinaIngressi = new Comparator<Ingressi>() {
         @Override
         public int compare(Ingressi i1, Ingressi i2) {
@@ -157,21 +157,42 @@ public class GestionePiscina {
 
     // visualizzare l'elenco degli incassi giornalieri di uno specifico mese
     public void IncassiMensili() {
-        double incassiTOT = 0;
+//ordino prima di tutto il vettore
+        Collections.sort(IngressiTOT, OrdinaIngressi);
         LocalDate meseSpecifico = inserisciMese();
-        for (Ingressi i : IngressiTOT) {
-            if (i instanceof IngressiNonAbbonati) {
-                ((IngressiNonAbbonati) i).getUtenteNA().getPrezzoBiglietto();
+        //forse conviene un metodo?
+        Month mese = meseSpecifico.getMonth();
+        int anno = meseSpecifico.getYear();
 
+        YearMonth annoEMese = YearMonth.of(anno, mese);
+        int giornidelMese = annoEMese.lengthOfMonth();
+
+        String stampaTitolo = mese.getDisplayName(TextStyle.FULL, Locale.ITALIAN) + " " + anno;
+        System.out.println("Incassi del mese " + stampaTitolo);
+        //j = 1 perché useremo j per stampare il numero del giorno del mese
+        double incassoGiornaliero = 0;
+        for (int j = 1; j < giornidelMese + 1; j++) {
+            incassoGiornaliero = 0;
+            for (Ingressi i : IngressiTOT) {
+                if (i.getData().equals(meseSpecifico)) {
+                    if (i instanceof IngressiNonAbbonati) {
+                        IngressiNonAbbonati ingressoNonAbbonato = (IngressiNonAbbonati) i;
+                        UtenteNonAbbonato uNonAbbonato = ingressoNonAbbonato.getUtenteNA();
+                        double bigliettoUtente = uNonAbbonato.getPrezzoBiglietto();
+                        incassoGiornaliero += bigliettoUtente;
+                    }
+                }
             }
+            meseSpecifico.plusDays(1);
+            System.out.println("Giorno " + j + ":\t\t" + incassoGiornaliero);
         }
-
     }
 
     /* visualizzare l'elenco con il numero degli ingressi in abbonamento giornalieri di uno specifico mese*/
     public void IngressiAbbonatiMensili() {
 
     }
+
 
     //visualizzare il numero di ingressi ridotti
     public void IngressiRidotti() {
@@ -241,7 +262,7 @@ public class GestionePiscina {
     }
 
     /* metodo che controlla la temperatura dell'utente prima di entrare in piscina (introdotta per l'emergenza Covid-19)*/
-    public boolean controllaTemperatura(double temperatura) {
+    private boolean controllaTemperatura(double temperatura) {
         boolean temperaturaOK = true;
         boolean ok = true;
         do {
@@ -262,7 +283,7 @@ public class GestionePiscina {
                     temperaturaOK = true;
                 }
             } catch (InputMismatchException e) {
-                //sistemare
+                System.out.println("Riprova con un altro carattere.");
             }
         } while (!ok);
         return temperaturaOK;

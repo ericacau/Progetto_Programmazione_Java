@@ -3,11 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="21b93cdd-6feb-4e70-84ca-a7d1e742cddd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/piscina/GestionePiscina$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/piscina/GestionePiscina.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/piscina/GestionePiscina.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/piscina/GestionePiscina.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/piscina/Piscina.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/piscina/Piscina.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/piscina/GestionePiscina.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/GestionePiscina.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/piscina/Piscina.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/Piscina.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +22,9 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/piscina/GestionePiscina.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="ProjectId" id="1t4xenwqePbHxkyxgSO7mhL6uOW" />
   <component name="ProjectViewState">
@@ -46,19 +47,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -69,7 +57,8 @@
       <option name="presentableId" value="Default" />
       <updated>1622042274170</updated>
       <workItem from="1622042278167" duration="5785000" />
-      <workItem from="1622052423042" duration="8377000" />
+      <workItem from="1622052423042" duration="8976000" />
+      <workItem from="1622102884968" duration="6313000" />
     </task>
     <servers />
   </component>
