@@ -4,6 +4,7 @@ import java.util.*;
 import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.stream.StreamSupport;
 
 public class Piscina {
     public static void main(String[] args) {
@@ -63,6 +64,7 @@ public class Piscina {
             System.out.println("E - Visualizzare gli incassi giornalieri di uno specifico mese");
             System.out.println("F - Visualizzare l'elenco con il numero di ingressi in abbonamento giornalieri di uno specifico mese");
             System.out.println("G - Visualizzare gli ingressi senza abbonamento e con riduzione di uno specifico mese");
+            System.out.println("H - Leggi gli ingressi inseriti su file");
             System.out.println("S - Salva gli ingressi inseriti su file");
             System.out.println("U - Uscita");
             System.out.println("\nCosa vuoi fare?");
@@ -112,6 +114,22 @@ public class Piscina {
                         //da sistemare
                         nuovoIngresso.IngressiRidotti();
                         break;
+                    case 'H':
+                    case 'h':
+                        try {
+                            inputStream = new ObjectInputStream(new BufferedInputStream(new FileInputStream(nomeFile)));
+                            vettoreIngressi = (Vector<Ingressi>) inputStream.readObject(); //conversione di tipo anche qui
+                            inputStream.close();
+                        } catch (FileNotFoundException e) {
+                            System.out.println("Non è presente un file di ingressi!");
+                        } catch (IOException e) {
+                            System.out.println(e);
+                            System.out.println("Errore nella lettura del file di input: " + nomeFile);
+                        } catch (ClassNotFoundException e) {
+                            System.out.println("Errore nella lettura degli ingressi da file.");
+                        }
+                        System.out.println(vettoreIngressi.toString());
+                        break;
                     case 'S':
                     case 's':
                         System.out.println("Stai salvando le informazioni sugli ingressi...");
@@ -139,7 +157,9 @@ public class Piscina {
                 System.out.println("Hai inserito un carattere errato");
                 input.nextLine();
             }
-        } while (scelta != 'U' || scelta != 'u');
+        }
+        //non esce dal programma anche se preme U
+        while (scelta != 'U' || scelta != 'u');
         input.close();
     }
 }

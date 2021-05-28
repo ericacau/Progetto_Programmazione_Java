@@ -10,14 +10,15 @@ public class UtenteAbbonato implements Serializable {
 
     private String nome;
     private String cognome;
-    private static final int CODICEUTENTEABBONATO = 0;
+    private static int codiceUtenteAbbonato = 1;
     private int idUtente;
 
     //costruttore
     public UtenteAbbonato(String nome, String cognome) {
         this.nome = nome;
         this.cognome = cognome;
-        this.idUtente = CODICEUTENTEABBONATO + 1;
+        this.idUtente = codiceUtenteAbbonato + 1;
+        codiceUtenteAbbonato++;
     }
 
 
@@ -33,7 +34,6 @@ public class UtenteAbbonato implements Serializable {
     public String getCognome() {
         return cognome;
     }
-
 
     public boolean equals(String nomeInserito, String cognomeInserito) {
         return (nome.equals(nomeInserito) && cognome.equals(cognomeInserito));

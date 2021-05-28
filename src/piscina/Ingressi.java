@@ -22,8 +22,6 @@ public class Ingressi implements Serializable {
     public LocalDate getData() {
         return data;
     }
-
-
 }
 
 

@@ -2,20 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21b93cdd-6feb-4e70-84ca-a7d1e742cddd" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/piscina/PiscinaChiusa.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/piscina/GestionePiscina$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/piscina/GestionePiscina$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/piscina/GestionePiscina.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/piscina/GestionePiscina.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/piscina/IngressiAbbonati.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/piscina/IngressiAbbonati.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/piscina/Piscina.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/piscina/Piscina.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/piscina/UtenteAbbonato.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/piscina/UtenteAbbonato.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ingressiPiscina" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/piscina/GestionePiscina.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/GestionePiscina.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/piscina/Ingressi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/Ingressi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/piscina/IngressiAbbonati.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/IngressiAbbonati.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/piscina/Piscina.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/Piscina.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/piscina/UtenteAbbonato.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/UtenteAbbonato.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/piscina/UtenteNonAbbonato.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/UtenteNonAbbonato.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -52,13 +63,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -76,6 +89,7 @@
       <workItem from="1622052423042" duration="8976000" />
       <workItem from="1622102884968" duration="6313000" />
       <workItem from="1622140621025" duration="9617000" />
+      <workItem from="1622188877277" duration="4716000" />
     </task>
     <servers />
   </component>
@@ -92,5 +106,22 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/piscina/IngressiAbbonati.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/piscina/IngressiAbbonati.java</url>
+          <line>33</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

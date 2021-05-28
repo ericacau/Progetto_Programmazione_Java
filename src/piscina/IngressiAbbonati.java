@@ -19,7 +19,7 @@ public class IngressiAbbonati extends Ingressi implements Serializable {
         this.utenteA = utenteA;
     }
 
-    public UtenteAbbonato getUtenteA() {
+    public UtenteAbbonato getUtente() {
         return utenteA;
     }
 
@@ -30,12 +30,11 @@ public class IngressiAbbonati extends Ingressi implements Serializable {
     public String toString() {
         DateTimeFormatter formattaData = DateTimeFormatter.ofPattern("dd/M/yyyy");
         String dataStampa = this.getData().format(formattaData);
-        return "|DATA INGRESSO: " + dataStampa + "\t" + "|Nome: " + utenteA.getNome() + "  |Cognome: " + utenteA.getCognome() + "   |ID UTENTE: " + utenteA.getIdUtente();
+        return "|DATA INGRESSO: " + dataStampa + "\t" + "|Nome: " + utenteA.getNome() + "  |Cognome: " +
+                utenteA.getCognome() + "   |ID UTENTE: " + utenteA.getIdUtente();
     }
 
-    public UtenteAbbonato getUtente() {
-        return utenteA;
-    }
+
 }
 
 
