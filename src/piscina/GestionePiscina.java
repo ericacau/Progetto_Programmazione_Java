@@ -11,24 +11,16 @@ import java.lang.*;
 
 public class GestionePiscina {
 
-    /* inizializzo le seguenti variabili:
-        - input: il nostro scanner per interagire con l'utente;
-        - vettoreAbbonamenti: per aggiungere/rimuovere gli ingressi;
-        - info: stringa per costruire le informazioni sull'ingresso (conterrà
-                il prezzo o il nome/cognome dell'utente)
-     */
-
-    private DateTimeFormatter formattaData = DateTimeFormatter.ofPattern("d/MM/yyyy");
+    //variabili d'istanza
     private Scanner input = new Scanner(System.in);
     private Vector<Ingressi> IngressiTOT;
-    /*vettore IngressiTOT: contiene tutti gli ingressi definiti
-    all'interno della classe Ingressi e delle sue estensioni*/
+    private DateTimeFormatter formattaData = DateTimeFormatter.ofPattern("d/MM/yyyy");
+
 
     // Costruttore del GestorePiscina che prende in input il vettore IngressiTOT definito sopra
     public GestionePiscina(Vector v1) {
         this.IngressiTOT = v1;
     }
-
     /*---------METODI--------*/
 
     /*Metodo AggiungiIngresso()
@@ -38,7 +30,6 @@ public class GestionePiscina {
            i metodi delle classi utenteAbbonnato e utenteNonAbbonato
     */
     public void aggiungiIngresso() {
-
         LocalDate dataIngresso = chiediData();
         boolean controlloData = controllaData(dataIngresso);
         if (controlloData) {
@@ -183,16 +174,39 @@ public class GestionePiscina {
                     }
                 }
             }
-            meseSpecifico.plusDays(1);
+            meseSpecifico = meseSpecifico.plusDays(1);
             System.out.println("Giorno " + j + ":\t\t" + incassoGiornaliero);
         }
     }
 
     /* visualizzare l'elenco con il numero degli ingressi in abbonamento giornalieri di uno specifico mese*/
     public void IngressiAbbonatiMensili() {
-
+        Collections.sort(IngressiTOT, OrdinaIngressi);
+        LocalDate meseSpecifico = inserisciMese();
+        //forse conviene un metodo?
+        Month mese = meseSpecifico.getMonth();
+        int anno = meseSpecifico.getYear();
+        YearMonth annoEMese = YearMonth.of(anno, mese);
+        int giornidelMese = annoEMese.lengthOfMonth();
+        String stampaTitolo = mese.getDisplayName(TextStyle.FULL, Locale.ITALIAN) + " " + anno;
+        System.out.println("ELENCO DEI SOLI ABBONATI DEL MESE " + stampaTitolo.toUpperCase());
+        //j = 1 perché useremo j per stampare il numero del giorno del mese
+        int numeroIngressi = 0;
+        for (int j = 1; j < giornidelMese + 1; j++) {
+            numeroIngressi = 0;
+            for (Ingressi i : IngressiTOT) {
+                if (i.getData().equals(meseSpecifico)) {
+                    if (i instanceof IngressiAbbonati) {
+                        IngressiAbbonati ingressoAbbonati = (IngressiAbbonati) i;
+                        UtenteAbbonato utenteAbb = ingressoAbbonati.getUtente();
+                        numeroIngressi ++;
+                    }
+                }
+            }
+            meseSpecifico = meseSpecifico.plusDays(1);
+            System.out.println("Giorno " + j + ":\t\t" + numeroIngressi);
+        }
     }
-
 
     //visualizzare il numero di ingressi ridotti
     public void IngressiRidotti() {
@@ -248,7 +262,7 @@ public class GestionePiscina {
                     data = LocalDate.parse(d1, formattaData);
                 }
             } catch (InputMismatchException e) {
-                input.nextLine();
+                //input.nextLine();
                 System.out.println("Inserisci S o N");
                 ok = false;
             }
@@ -289,7 +303,6 @@ public class GestionePiscina {
         return temperaturaOK;
     }
 
-
     private LocalDate inserisciMese() {
         System.out.println("Inserisci il mese di cui vuoi sapere gli ingressi");
         //casto come string per leggere lo 0
@@ -300,6 +313,4 @@ public class GestionePiscina {
         LocalDate ingressiDelMese = LocalDate.parse(ingrMese, formattaData);
         return ingressiDelMese;
     }
-
-
 }

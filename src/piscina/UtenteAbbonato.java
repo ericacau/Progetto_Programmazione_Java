@@ -10,19 +10,20 @@ public class UtenteAbbonato implements Serializable {
 
     private String nome;
     private String cognome;
-    private static int codiceUtenteAbbonato = 0;
+    private static final int CODICEUTENTEABBONATO = 0;
+    private int idUtente;
 
     //costruttore
     public UtenteAbbonato(String nome, String cognome) {
         this.nome = nome;
         this.cognome = cognome;
-        UtenteAbbonato.codiceUtenteAbbonato = codiceUtenteAbbonato + 1;
+        this.idUtente = CODICEUTENTEABBONATO + 1;
     }
 
 
     //metodo per visualizzare il codice utente abbonato
-    public int getCodiceUtenteAbbonato() {
-        return codiceUtenteAbbonato;
+    public int getIdUtente() {
+        return idUtente;
     }
 
     public String getNome() {

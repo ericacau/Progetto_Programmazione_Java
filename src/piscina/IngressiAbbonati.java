@@ -30,7 +30,7 @@ public class IngressiAbbonati extends Ingressi implements Serializable {
     public String toString() {
         DateTimeFormatter formattaData = DateTimeFormatter.ofPattern("dd/M/yyyy");
         String dataStampa = this.getData().format(formattaData);
-        return "|DATA INGRESSO: " + dataStampa + "\t" + "|Nome: " + utenteA.getNome() + "  |Cognome: " + utenteA.getCognome();
+        return "|DATA INGRESSO: " + dataStampa + "\t" + "|Nome: " + utenteA.getNome() + "  |Cognome: " + utenteA.getCognome() + "   |ID UTENTE: " + utenteA.getIdUtente();
     }
 
     public UtenteAbbonato getUtente() {

@@ -5,7 +5,12 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/piscina/GestionePiscina.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/piscina/GestionePiscina.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/piscina/Piscina.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/piscina/Piscina.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ingressiPiscina" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/piscina/GestionePiscina.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/GestionePiscina.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/piscina/IngressiAbbonati.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/IngressiAbbonati.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/piscina/Piscina.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/Piscina.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/piscina/UtenteAbbonato.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/UtenteAbbonato.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/piscina/UtenteNonAbbonato.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/UtenteNonAbbonato.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +52,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -59,10 +75,22 @@
       <workItem from="1622042278167" duration="5785000" />
       <workItem from="1622052423042" duration="8976000" />
       <workItem from="1622102884968" duration="6313000" />
+      <workItem from="1622140621025" duration="9617000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

@@ -7,26 +7,30 @@ import java.time.format.DateTimeFormatter;
 
 public class Piscina {
     public static void main(String[] args) {
-        //Crea un vettore 'ingresso' contenente data e utenteAbbonato o non abbonato
-
         Scanner input = new Scanner(System.in);
-        Vector<Ingressi> ingressi = new Vector<Ingressi>();
+        //Creo un vettore che conterrà gli oggetti ingressi
+        //sarà manipolato dai metodi della classe GestionePiscina
+        //inizialmente riempito da un file preesistente; se non presente verrà notificato all'utente che il
+        //file non è presente e che potrà essere salvato in un secondo momento dopo aver aggiunto gli ingressi.
+
+        Vector<Ingressi> vettoreIngressi = new Vector<Ingressi>();
         ObjectInputStream inputStream;
         String nomeFile = "ingressiPiscina";
 
         System.out.println("Benvenuto nel pannello di controllo degli ingressi della piscina \"La Sirena\"");
-        System.out.println("---------------------------------------------------------------------------");
+        System.out.println("--------------------------------------------------------------------------------");
         System.out.println("Leggo il file di ingressi di default della piscina...\n");
+
         //creo un oggetto nuovoIngresso per usare i metodi sugli ingressi
-        GestionePiscina nuovoIngresso = new GestionePiscina(ingressi);
+        GestionePiscina nuovoIngresso = new GestionePiscina(vettoreIngressi);
 
         //leggo il file in input ingressiPiscina
         try {
-            inputStream = new ObjectInputStream(new FileInputStream(nomeFile));
-            ingressi = (Vector<Ingressi>) inputStream.readObject(); //conversione di tipo anche qui
+            inputStream = new ObjectInputStream(new BufferedInputStream(new FileInputStream(nomeFile)));
+            vettoreIngressi = (Vector<Ingressi>) inputStream.readObject(); //conversione di tipo anche qui
             inputStream.close();
         } catch (FileNotFoundException e) {
-            System.out.println("Non è presente un file di ingressi! \n");
+            System.out.println("Non è presente un file di ingressi!");
         } catch (IOException e) {
             System.out.println(e);
             System.out.println("Errore nella lettura del file di input: " + nomeFile);
@@ -36,7 +40,7 @@ public class Piscina {
 
         //controllo se il vettore è vuoto. Se ha degli ingressi, accedo al menù
         //se non vi sono ingressi, procedo direttamente all'aggiunta di un nuovo ingresso
-        if (ingressi.isEmpty()) {
+        if (vettoreIngressi.isEmpty()) {
             System.out.println("Procedi all'inserimento di un ingresso prima di accedere al menu'.");
             nuovoIngresso.aggiungiIngresso();
         } else
@@ -102,7 +106,6 @@ public class Piscina {
                         // elenco con il numero degli ingressi in abbonamento giornalieri di uno specifico mese
                         nuovoIngresso.IngressiAbbonatiMensili();
                         break;
-
                     case 'G':
                     case 'g':
                         //ingressi con riduzione di uno specifico mese
@@ -111,10 +114,10 @@ public class Piscina {
                         break;
                     case 'S':
                     case 's':
-                        System.out.println("Stai salvando le informazioni sugli ingressi.");
+                        System.out.println("Stai salvando le informazioni sugli ingressi...");
                         try {
-                            ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(nomeFile));
-                            outputStream.writeObject(ingressi);
+                            ObjectOutputStream outputStream = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(nomeFile)));
+                            outputStream.writeObject(vettoreIngressi);
                             outputStream.close();
                         } catch (FileNotFoundException e) {
                             System.out.println("File non trovato");
