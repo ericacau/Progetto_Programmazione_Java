@@ -43,14 +43,13 @@ public class GestionePiscina {
             }
         } catch (PiscinaChiusa e ) {
 
-        e.getMessage();
+        System.out.println(e.getMessage());
         }
 
 
     boolean temperaturaok = true;
         if((dataIngresso.getYear()==2020)&&((dataIngresso.getMonthValue()>=06))||
                 ((dataIngresso.getYear()==2021)&&((dataIngresso.getMonthValue()>=05))))
-
     {
         System.out.print("Prima di inserire l'ingresso e' necessario controllare la temperatura dell'utente.\nInserisci la temperatura\n");
         double temperatura = input.nextDouble();

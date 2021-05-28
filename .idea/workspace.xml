@@ -2,19 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21b93cdd-6feb-4e70-84ca-a7d1e742cddd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/piscina/PiscinaChiusa.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/piscina/GestionePiscina$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/piscina/GestionePiscina$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/piscina/GestionePiscina.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/piscina/GestionePiscina.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/piscina/IngressiAbbonati.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/piscina/IngressiAbbonati.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/piscina/Piscina.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/piscina/Piscina.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/piscina/UtenteAbbonato.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/piscina/UtenteAbbonato.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ingressiPiscina" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/piscina/GestionePiscina.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/GestionePiscina.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/piscina/Ingressi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/Ingressi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/piscina/IngressiAbbonati.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/IngressiAbbonati.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/piscina/Piscina.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/Piscina.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/piscina/UtenteAbbonato.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/UtenteAbbonato.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +78,7 @@
       <workItem from="1622052423042" duration="8976000" />
       <workItem from="1622102884968" duration="6313000" />
       <workItem from="1622140621025" duration="9617000" />
-      <workItem from="1622188877277" duration="4716000" />
+      <workItem from="1622188877277" duration="4853000" />
     </task>
     <servers />
   </component>
