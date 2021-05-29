@@ -8,7 +8,7 @@ public class UtenteNonAbbonato implements Serializable{
     /* UTENTE NON ABBONATO
 		gestisce gli oggetti utenti abbonati composti dal prezzo del biglietto che può essere di due tipi
             * INTERO (3 euro)
-            * RIDOTTO -> in base a due criteri  
+            * RIDOTTO -> in base a due criteri
                 -  età (2 euro) : riuzione per i bambini al di sotto dei 12 anni e per gli anziani (a partire dai 65 anni)
                 -  studente (2,50 euro): ridotto per gli studenti (età inferiore ai 24 anni)
 	*/
@@ -66,8 +66,8 @@ public class UtenteNonAbbonato implements Serializable{
             prezzoBiglietto = BIGLIETTO_RIDOTTO_ETA;
         }
         else if (eta <= 24 && isStudente()) {
-                prezzoBiglietto = BIGLIETTO_RIDOTTO_STUDENTI;
-            }
+            prezzoBiglietto = BIGLIETTO_RIDOTTO_STUDENTI;
+        }
         else
             prezzoBiglietto = BIGLIETTO_INTERO;
         return prezzoBiglietto;
@@ -76,7 +76,6 @@ public class UtenteNonAbbonato implements Serializable{
 
 
     /* METODI AUSILIARI CHE CONTROLLANO LA TIPOLOGIA DI UTENTE*/
-
     private boolean isRidottoBambiniEAnziani() {
         if ((eta <= 12) || (eta >= 65))
             ridottoBambiniEAnziani = true;
@@ -101,4 +100,15 @@ public class UtenteNonAbbonato implements Serializable{
         }
         return studente;
     }
+
+    //Metodo che controlla la correttezza dell'eta'
+    public boolean controlloEta() {
+        boolean etaOK = true;
+        if ((eta <= 0) || (eta >= 112)) {
+            etaOK = false;
+            //System.out.println("Il valore inserito non e' corretto, inserire nuovamente l'eta' ");
+        }
+        return etaOK;
+    }
+
 }

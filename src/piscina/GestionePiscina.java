@@ -1,5 +1,6 @@
 package piscina;
 
+import javax.naming.CannotProceedException;
 import java.io.Serializable;
 import java.sql.Array;
 import java.text.ParseException;
@@ -15,6 +16,8 @@ public class GestionePiscina {
     private Scanner input = new Scanner(System.in);
     private Vector<Ingressi> IngressiTOT;
     private DateTimeFormatter formattaData = DateTimeFormatter.ofPattern("d/MM/yyyy");
+    private static final int CAPIENZA = 3; ;//Capienza della piscina (Costante)
+    public int ingressiPrenotati = 0; // var contatore che salva gli ingressi prenotati
 
 
     // Costruttore del GestorePiscina che prende in input il vettore IngressiTOT definito sopra
@@ -30,57 +33,62 @@ public class GestionePiscina {
            i metodi delle classi utenteAbbonnato e utenteNonAbbonato
     */
     public void aggiungiIngresso() {
-        LocalDate dataIngresso = chiediData();
-        boolean controlloData = controllaData(dataIngresso);
-        if (controlloData) {
-            System.out.println("Non puoi inserire un ingresso quando è chiusa la piscina.");
-            System.out.println("Inserisci un'altra data");
-            chiediData();
-        }
-        boolean temperaturaok = true;
-        if ((dataIngresso.getYear() == 2020) && ((dataIngresso.getMonthValue() >= 06)) ||
-                ((dataIngresso.getYear() == 2021) && ((dataIngresso.getMonthValue() >= 05)))) {
-            System.out.print("Prima di inserire l'ingresso e' necessario controllare la temperatura dell'utente.\nInserisci la temperatura\n");
-            double temperatura = input.nextDouble();
-            temperaturaok = controllaTemperatura(temperatura);
-        }
-        if (temperaturaok) {
-            System.out.println("Premi A se l'ingresso e' di un utente ABBONATO o N se non e' abbonato");
-            char scelta;
-            scelta = input.next().charAt(0);
-            switch (scelta) {
-                case 'A':
-                case 'a':
-                    System.out.println("Inserisci il nome dell'utente");
-                    String nome = input.nextLine();
-                    //rimuovo lo spazio dopo l'inserimento del nome
-                    nome = input.nextLine();
-                    System.out.println("Inserisci il cognome dell'utente");
-                    String cognome = input.nextLine();
-                    // creo un nuovo utente abbonato e un nuovo ingresso
-                    UtenteAbbonato utenteAbbonato = new UtenteAbbonato(nome, cognome);
-                    IngressiAbbonati nuovoIngressoAbbonati = new IngressiAbbonati(dataIngresso, utenteAbbonato);                    //inserisco l'ingresso appena creato nel vettore IngressiTOT
-                    IngressiTOT.add(nuovoIngressoAbbonati);
-                    System.out.println("Ingresso inserito!");
-                    break;
-                case 'N':
-                case 'n':
-                    System.out.println("Hai selezionato \"utente non abbonato.\"");
-                    System.out.println("\nSono disponibili delle riduzioni sul prezzo giornaliero\nInserisci l'eta' dell'utente");
-                    int eta = input.nextInt();
-                    UtenteNonAbbonato utenteNonAbbonato = new UtenteNonAbbonato(eta);
-                    double prezzo = utenteNonAbbonato.getPrezzoBiglietto();
-                    IngressiNonAbbonati nuovoIngressoNonAbbonati = new IngressiNonAbbonati(dataIngresso, utenteNonAbbonato, prezzo);
-                    IngressiTOT.add(nuovoIngressoNonAbbonati);
-                    System.out.println("Ingresso inserito");
-                    break;
+        do {
+            LocalDate dataIngresso = chiediData();
+            boolean controlloData = controllaData(dataIngresso);
+            if (controlloData) {
+                System.out.println("Non puoi inserire un ingresso quando è chiusa la piscina.");
+                System.out.println("Inserisci un'altra data");
+                chiediData();
             }
-        }
+            boolean temperaturaok = true;
+            //controllo la capienza (da sistemare)
+            //se la data è successiva a marzo 2020, prima di entrare in piscina è necessario misurare la temperatura
+            if ((dataIngresso.getYear() == 2020) && ((dataIngresso.getMonthValue() >= 06)) ||
+                    ((dataIngresso.getYear() == 2021) && ((dataIngresso.getMonthValue() >= 05)))) {
+                System.out.print("Prima di inserire l'ingresso e' necessario controllare la temperatura dell'utente.\nInserisci la temperatura\n");
+                double temperatura = input.nextDouble();
+                temperaturaok = controllaTemperatura(temperatura);
+            }
+            //se la temperatura è minore di 37, si può inserire l'ingresso
+            if (temperaturaok) {
+                //scelgo la tipologia di utente di cui voglio inserire l'indirizzo
+                System.out.println("Premi A se l'ingresso e' di un utente ABBONATO o N se non e' abbonato");
+                char scelta;
+                scelta = input.next().charAt(0);
+                switch (scelta) {
+                    case 'A': // utente abbonato
+                    case 'a':
+                        System.out.println("Inserisci il nome dell'utente");
+                        String nome = input.nextLine();
+                        //rimuovo lo spazio dopo l'inserimento del nome
+                        nome = input.nextLine();
+                        System.out.println("Inserisci il cognome dell'utente");
+                        String cognome = input.nextLine();
+                        // creo un nuovo utente abbonato e un nuovo ingresso
+                        UtenteAbbonato utenteAbbonato = new UtenteAbbonato(nome, cognome);
+                        IngressiAbbonati nuovoIngressoAbbonati = new IngressiAbbonati(dataIngresso, utenteAbbonato);                    //inserisco l'ingresso appena creato nel vettore IngressiTOT
+                        IngressiTOT.add(nuovoIngressoAbbonati);
+                        System.out.println("Ingresso inserito!");
+                        break;
 
+                    case 'N':   // utente non abbonato
+                    case 'n':
+                        System.out.println("Hai selezionato \"utente non abbonato.\"");
+                        System.out.println("\nSono disponibili delle riduzioni sul prezzo giornaliero\nInserisci l'eta' dell'utente");
+                        int eta = input.nextInt();
+                        UtenteNonAbbonato utenteNonAbbonato = new UtenteNonAbbonato(eta);
+                        double prezzo = utenteNonAbbonato.getPrezzoBiglietto();
+                        IngressiNonAbbonati nuovoIngressoNonAbbonati = new IngressiNonAbbonati(dataIngresso, utenteNonAbbonato, prezzo);
+                        IngressiTOT.add(nuovoIngressoNonAbbonati);
+                        System.out.println("Ingresso inserito");
+                        break;
+                }
+            }
+        } while (controllaCapienza());
     }
 
     // visualizzare la lista degli ingressi di uno specifico mese in ORDINE di data
-
     Comparator<Ingressi> OrdinaIngressi = new Comparator<Ingressi>() {
         @Override
         public int compare(Ingressi i1, Ingressi i2) {
@@ -148,7 +156,7 @@ public class GestionePiscina {
 
     // visualizzare l'elenco degli incassi giornalieri di uno specifico mese
     public void IncassiMensili() {
-//ordino prima di tutto il vettore
+        //ordino prima di tutto il vettore
         Collections.sort(IngressiTOT, OrdinaIngressi);
         LocalDate meseSpecifico = inserisciMese();
         //forse conviene un metodo?
@@ -224,8 +232,6 @@ public class GestionePiscina {
 
 
     // creo un metodo ausiliario per chiedere la data all'utente
-
-
     public void visualizzaIngresso() {
         System.out.println("----------------Elenco totale ingressi-----------------");
         for (Object ingresso : IngressiTOT) {
@@ -267,9 +273,8 @@ public class GestionePiscina {
                 ok = false;
             }
             //try {
-
-            //} //catch (DateTimeException e) {
-            // System.out.println("Hai inserito una data errata. Controlla");
+                //} catch (DateTimeException e) {
+                // System.out.println("Hai inserito una data errata. Controlla");
             //}
         } while (!ok);
         return data;
@@ -313,4 +318,23 @@ public class GestionePiscina {
         LocalDate ingressiDelMese = LocalDate.parse(ingrMese, formattaData);
         return ingressiDelMese;
     }
+
+    public int ingressiDisponibili() {
+        return CAPIENZA - ingressiPrenotati;
+
+    }
+
+    public boolean controllaCapienza() {
+        if (ingressiDisponibili() > 0) {
+            aggiungiIngresso();
+            ingressiPrenotati ++;
+            return true;
+        }
+        else return false;
+
+    }
+
+    /*public int getIngressiPrenotati() {
+        return ingressiPrenotati;
+    }*/
 }

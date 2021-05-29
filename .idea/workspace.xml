@@ -3,12 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="21b93cdd-6feb-4e70-84ca-a7d1e742cddd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/piscina/GestionePiscina$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/piscina/GestionePiscina$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/piscina/GestionePiscina.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/piscina/GestionePiscina.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/piscina/Piscina.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/piscina/Piscina.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ingressiPiscina" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/piscina/UtenteAbbonato.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/piscina/UtenteAbbonato.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/piscina/UtenteNonAbbonato.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/piscina/UtenteNonAbbonato.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/piscina/letturaIngressi.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/piscina/GestionePiscina.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/GestionePiscina.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/piscina/IngressiAbbonati.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/IngressiAbbonati.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/piscina/Piscina.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/Piscina.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/piscina/UtenteAbbonato.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/UtenteAbbonato.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/piscina/UtenteNonAbbonato.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/UtenteNonAbbonato.java" afterDir="false" />
     </list>
@@ -52,17 +53,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -76,6 +66,11 @@
       <workItem from="1622052423042" duration="8976000" />
       <workItem from="1622102884968" duration="6313000" />
       <workItem from="1622140621025" duration="9617000" />
+      <workItem from="1622189241322" duration="3092000" />
+      <workItem from="1622221483863" duration="1622000" />
+      <workItem from="1622290239500" duration="3601000" />
+      <workItem from="1622294030538" duration="1050000" />
+      <workItem from="1622306122291" duration="407000" />
     </task>
     <servers />
   </component>
@@ -92,5 +87,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
