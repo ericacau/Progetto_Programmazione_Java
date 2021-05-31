@@ -13,6 +13,7 @@ import java.util.*;
 */
 public class IngressiAbbonati extends Ingressi implements Serializable {
     private UtenteAbbonato utenteA;
+    static final long serialVersionUID = 1;
 
     public IngressiAbbonati(LocalDate data, UtenteAbbonato utenteA) {
         super(data);

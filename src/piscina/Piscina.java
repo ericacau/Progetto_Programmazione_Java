@@ -8,6 +8,7 @@ import java.util.stream.StreamSupport;
 
 public class Piscina {
     public static void main(String[] args) {
+
         Scanner input = new Scanner(System.in);
         //Creo un vettore che conterrà gli oggetti ingressi
         //sarà manipolato dai metodi della classe GestionePiscina
@@ -22,13 +23,10 @@ public class Piscina {
         System.out.println("--------------------------------------------------------------------------------");
         System.out.println("Leggo il file di ingressi di default della piscina...\n");
 
-        //creo un oggetto nuovoIngresso per usare i metodi sugli ingressi
-        GestionePiscina nuovoIngresso = new GestionePiscina(vettoreIngressi);
-
         //leggo il file in input ingressiPiscina
         try {
             inputStream = new ObjectInputStream(new BufferedInputStream(new FileInputStream(nomeFile)));
-            vettoreIngressi = (Vector<Ingressi>) inputStream.readObject(); //conversione di tipo anche qui
+            vettoreIngressi = (Vector<Ingressi>) inputStream.readObject(); //conversione di tipo
             inputStream.close();
         } catch (FileNotFoundException e) {
             System.out.println("Non è presente un file di ingressi!");
@@ -38,23 +36,26 @@ public class Piscina {
         } catch (ClassNotFoundException e) {
             System.out.println("Errore nella lettura degli ingressi da file.");
         }
+        //creo un oggetto nuovoIngresso per usare i metodi sugli ingressi
+        GestionePiscina nuovoIngresso = new GestionePiscina(vettoreIngressi);
 
         //controllo se il vettore è vuoto. Se ha degli ingressi, accedo al menù
         //se non vi sono ingressi, procedo direttamente all'aggiunta di un nuovo ingresso
         if (vettoreIngressi.isEmpty()) {
             System.out.println("Procedi all'inserimento di un ingresso prima di accedere al menu'.");
             nuovoIngresso.aggiungiIngresso();
-        } else
-            System.out.println("Il file di ingressi nella Piscina precedentemente salvato è stato caricato correttamente. Che cosa vuoi fare?");
+        } else {
+            System.out.println("Il file di ingressi nella Piscina precedentemente salvato è stato caricato correttamente.");
+        }
+        System.out.println("Ecco le possibili operazioni che puoi compiere.");
+        System.out.println("Che cosa vuoi fare?");
 
-        System.out.println("\nEcco le possibili operazioni che puoi compiere:");
 
         /*-------MENU--------*/
         //l'utente in base alla lettera scelta (da A a G), potrà effettuare le varie operazioni
         //    sugli ingressi richiamando i metodi della classe GestionePiscina
-        System.out.println("Ingressi già inseriti:");
-        nuovoIngresso.visualizzaIngresso();
         char scelta;
+        boolean menuAttivo = true;
         do {
             System.out.println("");
             System.out.println("A - Aggiungere un nuovo ingresso");
@@ -128,13 +129,13 @@ public class Piscina {
                         } catch (ClassNotFoundException e) {
                             System.out.println("Errore nella lettura degli ingressi da file.");
                         }
-                        System.out.println(vettoreIngressi.toString());
+                        nuovoIngresso.visualizzaIngresso();
                         break;
                     case 'S':
                     case 's':
                         System.out.println("Stai salvando le informazioni sugli ingressi...");
                         try {
-                            ObjectOutputStream outputStream = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(nomeFile)));
+                            ObjectOutputStream outputStream = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("ingressiPiscina")));
                             outputStream.writeObject(vettoreIngressi);
                             outputStream.close();
                         } catch (FileNotFoundException e) {
@@ -143,23 +144,22 @@ public class Piscina {
                             System.out.println("Errore nella scrittura del file");
                             System.out.println(e);
                         }
-                        System.out.println("Gli ingressi sono stati salvati nel file " + nomeFile);
+                        System.out.println("Gli ingressi sono stati salvati nel file " + nomeFile + "!");
                         break;
                     case 'U':
                     case 'u':
-                        System.out.println("Uscita in corso.");
+                        System.out.println("Uscita in corso...");
+                        System.out.println("Salvo le informazioni");
+                        menuAttivo = false;
                         break;
                     default:
                         System.out.println("Hai inserito un carattere errato");
-
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Hai inserito un carattere errato");
                 input.nextLine();
             }
-        }
-        //non esce dal programma anche se preme U
-        while (scelta != 'U' || scelta != 'u');
+        } while (menuAttivo);
         input.close();
     }
 }

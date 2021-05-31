@@ -7,10 +7,11 @@ public class UtenteAbbonato implements Serializable {
 		* gestisce gli oggetti utenti abbonati composti da nome e cognome e codice utente 
 			(che varia per ogni utente e serve per gestire casi di omonimia)
 	*/
+    static final long serialVersionUID = 1;
 
     private String nome;
     private String cognome;
-    private static int codiceUtenteAbbonato = 1;
+    private static int codiceUtenteAbbonato = 0;
     private int idUtente;
 
     //costruttore
@@ -34,6 +35,7 @@ public class UtenteAbbonato implements Serializable {
     public String getCognome() {
         return cognome;
     }
+
 
     public boolean equals(String nomeInserito, String cognomeInserito) {
         return (nome.equals(nomeInserito) && cognome.equals(cognomeInserito));
