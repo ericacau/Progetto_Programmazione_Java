@@ -10,15 +10,19 @@ public class UtenteAbbonato implements Serializable {
 
     private String nome;
     private String cognome;
-    private static int CodiceUtenteAbbonato = 0;
+<<<<<<< Updated upstream
+    private static int codiceUtenteAbbonato = 1;
+=======
+>>>>>>> Stashed changes
     private int idUtente;
+    private static int codiceUtenteAbbonato = 0;
 
     //costruttore
     public UtenteAbbonato(String nome, String cognome) {
         this.nome = nome;
         this.cognome = cognome;
-        this.idUtente = CodiceUtenteAbbonato + 1;
-
+        this.idUtente = codiceUtenteAbbonato + 1;
+        codiceUtenteAbbonato++;
     }
 
 
@@ -34,8 +38,6 @@ public class UtenteAbbonato implements Serializable {
     public String getCognome() {
         return cognome;
     }
-
-
 
     public boolean equals(String nomeInserito, String cognomeInserito) {
         return (nome.equals(nomeInserito) && cognome.equals(cognomeInserito));

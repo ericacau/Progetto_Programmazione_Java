@@ -5,9 +5,18 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /*Estensione della superclasse Ingressi che gestisce gli ingressi degli utenti non abbonati contenenti
+<<<<<<< Updated upstream
 * data di ingresso
 * utente -> variabile che contiene le informazioni della classe utenteAbbonato (nome e cognome)*/
 public class IngressiNonAbbonati extends Ingressi implements Serializable {
+=======
+ * data di ingresso
+ * utente -> variabile che contiene le informazioni della classe utenteAbbonato (nome e cognome)*/
+
+public class IngressiNonAbbonati extends Ingressi implements Serializable {
+
+    static final long serialVersionUID = 1;
+>>>>>>> Stashed changes
     private double prezzo;
     private UtenteNonAbbonato utenteNA;
 
