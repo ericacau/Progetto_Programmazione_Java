@@ -2,49 +2,52 @@ package piscina;
 
 import java.io.Serializable;
 import java.util.Scanner;
-
-<<<<<<< Updated upstream
-// asdfghjk
-public class UtenteNonAbbonato implements Serializable{
-=======
-public class UtenteNonAbbonato implements Serializable {
-    static final long serialVersionUID = 1;
-
->>>>>>> Stashed changes
-    /* UTENTE NON ABBONATO
+ /* UTENTE NON ABBONATO
 		gestisce gli oggetti utenti abbonati composti dal prezzo del biglietto che può essere di due tipi
             * INTERO (3 euro)
-            * RIDOTTO -> in base a due criteri  
+            * RIDOTTO -> in base a due criteri
                 -  età (2 euro) : riuzione per i bambini al di sotto dei 12 anni e per gli anziani (a partire dai 65 anni)
                 -  studente (2,50 euro): ridotto per gli studenti (età inferiore ai 24 anni)
 	*/
 
-    //i prezzi dei biglietti senza abbonamento vengono inizializzati come costanti
+
+public class UtenteNonAbbonato implements Serializable {
+
+    
+
 
     private boolean studente = false;
     private boolean ridottoBambiniEAnziani = false;
     private double prezzoBiglietto;
     private int eta;
-
-    private static Scanner input = new Scanner(System.in);
+    
+    //i prezzi dei biglietti senza abbonamento vengono inizializzati come costanti
     private static final double BIGLIETTO_INTERO = 3.0;
     private static final double BIGLIETTO_RIDOTTO_ETA = 2;
     private static final double BIGLIETTO_RIDOTTO_STUDENTI = 2.5;
-
-    //costruttore dell'utente non abbonato
+    
+    private static Scanner input = new Scanner(System.in);
+    static final long serialVersionUID = 1;
+    
+    //costruttore 
     public UtenteNonAbbonato(int eta) {
         this.eta = eta;
         this.prezzoBiglietto = setPrezzoBiglietto();
     }
 
+    /*---METODI---*/
+
+    //metodo che restituisce l'eta'
     public int getEta() {
         return eta;
     }
 
+    // metodo per ottenere il prezzo del biglietto
     public double getPrezzoBiglietto() {
         return prezzoBiglietto;
     }
 
+    /*metodi per ottenere le riduzioni e applicarle*/
     public boolean getStudente() {
         return studente;
     }

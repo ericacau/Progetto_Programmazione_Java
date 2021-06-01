@@ -12,11 +12,8 @@ import java.util.*;
 
 */
 public class IngressiAbbonati extends Ingressi implements Serializable {
-<<<<<<< Updated upstream
-=======
 
     static final long serialVersionUID = 1;
->>>>>>> Stashed changes
     private UtenteAbbonato utenteA;
 
     public IngressiAbbonati(LocalDate data, UtenteAbbonato utenteA) {

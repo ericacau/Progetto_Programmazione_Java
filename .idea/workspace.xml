@@ -8,8 +8,12 @@
       <change beforePath="$PROJECT_DIR$/bin/piscina/Piscina.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/piscina/Piscina.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/piscina/UtenteAbbonato.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/piscina/UtenteAbbonato.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/piscina/UtenteNonAbbonato.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/piscina/UtenteNonAbbonato.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/piscina/letturaIngressi.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ingressiPiscina" beforeDir="false" afterPath="$PROJECT_DIR$/ingressiPiscina" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/piscina/GestionePiscina.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/GestionePiscina.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/piscina/Ingressi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/Ingressi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/piscina/IngressiAbbonati.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/IngressiAbbonati.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/piscina/IngressiNonAbbonati.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/IngressiNonAbbonati.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/piscina/Piscina.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/Piscina.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/piscina/UtenteAbbonato.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/UtenteAbbonato.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/piscina/UtenteNonAbbonato.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/UtenteNonAbbonato.java" afterDir="false" />
     </list>
@@ -71,6 +75,7 @@
       <workItem from="1622290239500" duration="3601000" />
       <workItem from="1622294030538" duration="1050000" />
       <workItem from="1622306122291" duration="407000" />
+      <workItem from="1622541452195" duration="990000" />
     </task>
     <servers />
   </component>

@@ -9,16 +9,10 @@ import java.time.format.DateTimeFormatter;
 * data di ingresso
 * utente -> variabile che contiene le informazioni della classe utenteAbbonato (nome e cognome)*/
 public class IngressiNonAbbonati extends Ingressi implements Serializable {
-=======
- * data di ingresso
- * utente -> variabile che contiene le informazioni della classe utenteAbbonato (nome e cognome)*/
 
-public class IngressiNonAbbonati extends Ingressi implements Serializable {
-
-    static final long serialVersionUID = 1;
->>>>>>> Stashed changes
     private double prezzo;
     private UtenteNonAbbonato utenteNA;
+    static final long serialVersionUID = 1;
 
     public IngressiNonAbbonati(LocalDate data, UtenteNonAbbonato utenteNA, double prezzo) {
         super(data);

@@ -13,10 +13,7 @@ public class Ingressi implements Serializable {
             - utente non abbonato: prezzo del biglietto 
     */
     private LocalDate data;
-<<<<<<< Updated upstream
-    private String informazioni;
-=======
->>>>>>> Stashed changes
+    //private String informazioni;
 
     public Ingressi(LocalDate data) {
         this.data = data;
