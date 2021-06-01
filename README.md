@@ -1,5 +1,6 @@
 Realizzare un programma Java per la gestione della lista degli ingressi in una piscina. 
 Ogni elemento della lista conterrà l’indicazione della data di ingresso. 
+
 Inoltre, nel caso in cui si tratti di un ingresso di un utente abbonato, l’elemento della lista dovrà riportare il nome dell’utente (nota: non è necessario gestire un archivio degli abbonati. E’ sufficiente riportare il nome dell’utente in ogni ingresso.). 
 Nel caso invece in cui si tratti di un ingresso di un utente senza abbonamento, l’elemento della lista dovrà riportare il prezzo del biglietto di ingresso (che può non essere sempre lo stesso)
 
