@@ -13,7 +13,7 @@ import java.util.*;
 */
 public class IngressiAbbonati extends Ingressi implements Serializable {
 
-    static final long serialVersionUID = 1;
+    static final long serialVersionUID = -4829345612921075523L;
     private UtenteAbbonato utenteA;
 
     public IngressiAbbonati(LocalDate data, UtenteAbbonato utenteA) {

@@ -8,6 +8,7 @@ import java.time.LocalDate;
 
 public class Ingressi implements Serializable {
     private LocalDate data;
+    static final long serialVersionUID = -4829345612921075523L;
 
     public Ingressi(LocalDate data) {
         this.data = data;

@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 public class IngressiNonAbbonati extends Ingressi implements Serializable {
     private double prezzo;
     private UtenteNonAbbonato utenteNA;
-    static final long serialVersionUID = 1;
+    static final long serialVersionUID = -4829345612921075523L;
 
     public IngressiNonAbbonati(LocalDate data, UtenteNonAbbonato utenteNA) {
         super(data);

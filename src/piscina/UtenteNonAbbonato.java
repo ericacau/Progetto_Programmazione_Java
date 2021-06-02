@@ -12,10 +12,7 @@ import java.util.Scanner;
 
 
 public class UtenteNonAbbonato implements Serializable {
-
-    
-
-
+    static final long serialVersionUID = -4829345612921075523L;
     private boolean studente = false;
     private boolean ridottoBambiniEAnziani = false;
     private double prezzoBiglietto;
@@ -27,8 +24,7 @@ public class UtenteNonAbbonato implements Serializable {
     private static final double BIGLIETTO_RIDOTTO_STUDENTI = 2.5;
     
     private static Scanner input = new Scanner(System.in);
-    static final long serialVersionUID = 1;
-    
+
     //costruttore 
     public UtenteNonAbbonato(int eta) {
         this.eta = eta;
