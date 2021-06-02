@@ -2,9 +2,7 @@ package piscina;
 
 import java.util.*;
 import java.io.*;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.stream.StreamSupport;
+
 
 public class Piscina {
     public static void main(String[] args) {
@@ -31,7 +29,6 @@ public class Piscina {
         } catch (FileNotFoundException e) {
             System.out.println("Non è presente un file di ingressi!");
         } catch (IOException e) {
-            System.out.println(e);
             System.out.println("Errore nella lettura del file di input: " + nomeFile);
         } catch (ClassNotFoundException e) {
             System.out.println("Errore nella lettura degli ingressi da file.");
@@ -57,7 +54,6 @@ public class Piscina {
         char scelta;
         boolean menuAttivo = true;
         do {
-            System.out.println("");
             System.out.println("A - Aggiungere un nuovo ingresso");
             System.out.println("B - Visualizzare gli ingressi di un giorno specifico");
             System.out.println("C - Visualizzare gli ingressi di un mese specifico");
@@ -70,7 +66,6 @@ public class Piscina {
             System.out.println("U - Uscita");
             System.out.println("\nCosa vuoi fare?");
             scelta = input.next().charAt(0);
-            //servirà qualcosa che permetta di aggiungere utenti?
             try {
                 switch (scelta) {
                     case 'A':
@@ -117,19 +112,8 @@ public class Piscina {
                         break;
                     case 'H':
                     case 'h':
-                        try {
-                            inputStream = new ObjectInputStream(new BufferedInputStream(new FileInputStream(nomeFile)));
-                            vettoreIngressi = (Vector<Ingressi>) inputStream.readObject(); //conversione di tipo anche qui
-                            inputStream.close();
-                        } catch (FileNotFoundException e) {
-                            System.out.println("Non è presente un file di ingressi!");
-                        } catch (IOException e) {
-                            System.out.println(e);
-                            System.out.println("Errore nella lettura del file di input: " + nomeFile);
-                        } catch (ClassNotFoundException e) {
-                            System.out.println("Errore nella lettura degli ingressi da file.");
-                        }
                         nuovoIngresso.visualizzaIngresso();
+                        System.out.println("\n");
                         break;
                     case 'S':
                     case 's':
@@ -142,7 +126,6 @@ public class Piscina {
                             System.out.println("File non trovato");
                         } catch (IOException e) {
                             System.out.println("Errore nella scrittura del file");
-                            System.out.println(e);
                         }
                         System.out.println("Gli ingressi sono stati salvati nel file " + nomeFile + "!");
                         break;
@@ -157,7 +140,6 @@ public class Piscina {
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Hai inserito un carattere errato");
-                input.nextLine();
             }
         } while (menuAttivo);
         input.close();

@@ -11,16 +11,14 @@ import java.time.format.TextStyle;
 public class GestionePiscina {
 
     //variabili d'istanza
-    private Scanner input = new Scanner(System.in);
-    private Vector<Ingressi> IngressiTOT;
-    private DateTimeFormatter formattaData = DateTimeFormatter.ofPattern("d/MM/yyyy");
-    private static final int CAPIENZA = 60;//Capienza della piscina (Costante)
-    private LocalDate chiusura1 = LocalDate.parse("2020-03-10");
-    private LocalDate apertura1 = LocalDate.parse("2020-07-01");
-    private LocalDate chiusura2 = LocalDate.parse("2020-10-20");
-    private LocalDate apertura2 = LocalDate.parse("2021-05-25");
-    public int ingressiPrenotati = 0; // var contatore che salva gli ingressi prenotati
 
+    private Vector<Ingressi> IngressiTOT;
+    private static LocalDate chiusura1 = LocalDate.parse("2020-03-10");
+    private static LocalDate apertura1 = LocalDate.parse("2020-07-01");
+    private static LocalDate chiusura2 = LocalDate.parse("2020-10-20");
+    private static LocalDate apertura2 = LocalDate.parse("2021-05-25");
+    private static Scanner input = new Scanner(System.in);
+    private static DateTimeFormatter formattaData = DateTimeFormatter.ofPattern("d/MM/yyyy");
 
     // Costruttore del GestorePiscina che prende in input il vettore IngressiTOT definito sopra
     public GestionePiscina(Vector v1) {
@@ -81,22 +79,35 @@ public class GestionePiscina {
                                 System.out.println("Hai selezionato \"utente non abbonato.\"");
                                 System.out.println("\nSono disponibili delle riduzioni sul prezzo giornaliero\nInserisci l'eta' dell'utente");
                                 int eta = input.nextInt();
-                                UtenteNonAbbonato utenteNonAbbonato = new UtenteNonAbbonato(eta);
-                                double prezzo = utenteNonAbbonato.getPrezzoBiglietto();
-                                IngressiNonAbbonati nuovoIngressoNonAbbonati = new IngressiNonAbbonati(dataIngresso, utenteNonAbbonato, prezzo);
-                                IngressiTOT.add(nuovoIngressoNonAbbonati);
-                                System.out.println("Ingresso inserito");
+                                boolean controlloEtaCorretta = controlloEta(eta);
+                                if (!controlloEtaCorretta) {
+                                    throw new EtaCorrettaException();
+                                } else {
+                                    UtenteNonAbbonato utenteNonAbbonato = new UtenteNonAbbonato(eta);
+                                    double prezzo = utenteNonAbbonato.getPrezzoBiglietto();
+                                    IngressiNonAbbonati nuovoIngressoNonAbbonati = new IngressiNonAbbonati(dataIngresso, utenteNonAbbonato, prezzo);
+                                    IngressiTOT.add(nuovoIngressoNonAbbonati);
+                                    System.out.println("Ingresso inserito");
+                                }
                                 break;
                         }
                     } else
                         ok = false;
                 }
-            } catch (PiscinaChiusaException e) {
+            } catch (PiscinaChiusaException | EtaCorrettaException e) {
                 System.out.println(e.getMessage());
             }
         } while (ok);
 
 
+    }
+
+    public boolean controlloEta(int eta) {
+        boolean etaOK = true;
+        if ((eta <= 0) || (eta >= 112)) {
+            etaOK = false;
+        }
+        return etaOK;
     }
 
     // Creo un comparator per ordinare gli ingressi
@@ -231,7 +242,6 @@ public class GestionePiscina {
 
     //metodo per visualizzare il numero di ingressi ridotti
 
-    //forse ha più senso metterlo nel metodo che stampa il tot degli ingressi Non Abbonati del mese?
     public void IngressiRidotti() {
         int contaRidotti = 0;
         for (Ingressi i : IngressiTOT) {
@@ -248,10 +258,16 @@ public class GestionePiscina {
         System.out.println("Totale ingressi ridotti: " + contaRidotti);
     }
 
+    public void visualizzaIngresso() {
+        System.out.println("----------------Elenco totale ingressi-----------------");
+        for (Object ingresso : IngressiTOT) {
+            System.out.println(ingresso);
+        }
+    }
 
     // creo un metodo ausiliario per chiedere la data all'utente
     //ok
-    private LocalDate chiediData() {
+    private static LocalDate chiediData() {
         LocalDate data = null;
         boolean ok = true;
         do {
@@ -261,6 +277,7 @@ public class GestionePiscina {
                 if (scelta == 'S' || scelta == 's') {
                     data = LocalDate.now();
                     ok = false;
+
                 }
                 if (scelta == 'N' || scelta == 'n') {
                     System.out.println("Inserisci una data in formato DD/MM/YYYY");
@@ -281,10 +298,9 @@ public class GestionePiscina {
     }
 
 
-    private boolean ChiusuraPiscina(LocalDate data) {
+    private static boolean ChiusuraPiscina(LocalDate data) {
         boolean chiusura = false;
         //definisco i periodi di chiusura
-
         try {
             //controllo che la data inserita non cada di domenica o di lunedi'
             //giorni di chiusura della piscina
@@ -312,7 +328,7 @@ public class GestionePiscina {
 
 
     /* metodo ausiliario che controlla la temperatura dell'utente prima di entrare in piscina (introdotta per l'emergenza Covid-19)*/
-    private boolean controllaTemperatura(double temperatura) {
+    private static boolean controllaTemperatura(double temperatura) {
         boolean temperaturaOK = true;
         boolean ok = true;
         do {
@@ -341,9 +357,9 @@ public class GestionePiscina {
     }
 
 
-    private LocalDate inserisciMese() {
+    private static LocalDate inserisciMese() {
         LocalDate ingressiDelMese = null;
- System.out.println("Inserisci il mese di cui vuoi sapere gli ingressi in formato mm (es. 01 per gennaio, 02 per febbraio)");
+        System.out.println("Inserisci il mese di cui vuoi sapere gli ingressi in formato mm (es. 01 per gennaio, 02 per febbraio)");
         //casto come string per leggere lo 0
         int meseInserito = input.nextInt();
         System.out.println("Inserisci l'anno di cui vuoi sapere gli ingressi");
@@ -354,17 +370,12 @@ public class GestionePiscina {
     }
 
     //metodi ausiliari per la stampa
-    public void visualizzaIngresso() {
-        System.out.println("----------------Elenco totale ingressi-----------------");
-        for (Object ingresso : IngressiTOT) {
-            System.out.println(ingresso);
-        }
-    }
+
 
     // Metodo ausiliario che controlla che l'utente abbia inserito lo 0
     // nei mesi compresi tra gennaio e settembre
     // se non lo ha messo, viene aggiunto in automatico
-    private String controllaMese(int meseInserito, int annoInserito) {
+    private static String controllaMese(int meseInserito, int annoInserito) {
         String ingrMese = "";
         if (meseInserito >= 1 && meseInserito <= 9) {
             ingrMese = "01/0" + meseInserito + "/" + annoInserito;
@@ -374,11 +385,11 @@ public class GestionePiscina {
         return ingrMese;
     }
 
-    private String controllaGiornoMese(int giornoInserito, int meseInserito, int annoInserito) {
+    private static String controllaGiornoMese(int giornoInserito, int meseInserito, int annoInserito) {
         String ingrMese = "";
-        if ((meseInserito >= 1 && meseInserito <= 9) || ((giornoInserito>=1) &&
-                giornoInserito<=9)){
-            ingrMese = "0"+giornoInserito+"/0" + meseInserito + "/" + annoInserito;
+        if ((meseInserito >= 1 && meseInserito <= 9) || ((giornoInserito >= 1) &&
+                giornoInserito <= 9)) {
+            ingrMese = "0" + giornoInserito + "/0" + meseInserito + "/" + annoInserito;
         } else {
             ingrMese = giornoInserito + meseInserito + "/" + annoInserito;
         }

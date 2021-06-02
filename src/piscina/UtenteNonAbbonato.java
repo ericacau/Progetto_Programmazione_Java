@@ -16,16 +16,18 @@ public class UtenteNonAbbonato implements Serializable {
 	*/
 
     //i prezzi dei biglietti senza abbonamento vengono inizializzati come costanti
-    private static final double BIGLIETTO_INTERO = 3.0;
-    private static final double BIGLIETTO_RIDOTTO_ETA = 2;
-    private static final double BIGLIETTO_RIDOTTO_STUDENTI = 2.5;
+
     private boolean studente = false;
     private boolean ridottoBambiniEAnziani = false;
     private double prezzoBiglietto;
     private int eta;
+    private static final double BIGLIETTO_INTERO = 3.0;
+    private static final double BIGLIETTO_RIDOTTO_ETA = 2;
+    private static final double BIGLIETTO_RIDOTTO_STUDENTI = 2.5;
+
 
     //imposto a static per renderlo serializzabile
-    private transient Scanner input = new Scanner(System.in);
+    private static Scanner input = new Scanner(System.in);
 
 
     //costruttore dell'utente non abbonato
@@ -101,4 +103,6 @@ public class UtenteNonAbbonato implements Serializable {
         }
         return studente;
     }
+
+
 }
