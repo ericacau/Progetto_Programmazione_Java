@@ -3,24 +3,23 @@
   <component name="ChangeListManager">
     <list default="true" id="21b93cdd-6feb-4e70-84ca-a7d1e742cddd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/piscina/GestionePiscina$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/piscina/GestionePiscina$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/piscina/GestionePiscina.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/piscina/GestionePiscina.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/piscina/Piscina.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/piscina/Piscina.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/piscina/UtenteAbbonato.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/piscina/UtenteAbbonato.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/piscina/UtenteNonAbbonato.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/piscina/UtenteNonAbbonato.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ingressiPiscina" beforeDir="false" afterPath="$PROJECT_DIR$/ingressiPiscina" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/piscina/GestionePiscina.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/GestionePiscina.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/piscina/Ingressi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/Ingressi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/piscina/IngressiAbbonati.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/IngressiAbbonati.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/piscina/IngressiNonAbbonati.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/IngressiNonAbbonati.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/piscina/Piscina.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/Piscina.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/piscina/UtenteAbbonato.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/UtenteAbbonato.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/piscina/UtenteNonAbbonato.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piscina/UtenteNonAbbonato.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -47,6 +46,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RunManager">
@@ -70,12 +70,19 @@
       <workItem from="1622052423042" duration="8976000" />
       <workItem from="1622102884968" duration="6313000" />
       <workItem from="1622140621025" duration="9617000" />
-      <workItem from="1622189241322" duration="3092000" />
-      <workItem from="1622221483863" duration="1622000" />
-      <workItem from="1622290239500" duration="3601000" />
-      <workItem from="1622294030538" duration="1050000" />
-      <workItem from="1622306122291" duration="407000" />
-      <workItem from="1622541452195" duration="990000" />
+      <workItem from="1622188877277" duration="4853000" />
+      <workItem from="1622294488527" duration="115000" />
+      <workItem from="1622359971356" duration="1000" />
+      <workItem from="1622362649644" duration="2776000" />
+      <workItem from="1622369051843" duration="340000" />
+      <workItem from="1622378156541" duration="13796000" />
+      <workItem from="1622402247407" duration="3728000" />
+      <workItem from="1622464595699" duration="5163000" />
+      <workItem from="1622556071537" duration="550000" />
+      <workItem from="1622558043375" duration="204000" />
+      <workItem from="1622647659803" duration="335000" />
+      <workItem from="1622648015001" duration="25000" />
+      <workItem from="1622662053325" duration="2406000" />
     </task>
     <servers />
   </component>

@@ -13,7 +13,7 @@ import java.util.*;
 */
 public class IngressiAbbonati extends Ingressi implements Serializable {
 
-    static final long serialVersionUID = 1;
+    static final long serialVersionUID = -4829345612921075523L;
     private UtenteAbbonato utenteA;
 
     public IngressiAbbonati(LocalDate data, UtenteAbbonato utenteA) {
@@ -33,7 +33,7 @@ public class IngressiAbbonati extends Ingressi implements Serializable {
         DateTimeFormatter formattaData = DateTimeFormatter.ofPattern("dd/M/yyyy");
         String dataStampa = this.getData().format(formattaData);
         return "|DATA INGRESSO: " + dataStampa + "\t" + "|Nome: " + utenteA.getNome() + "  |Cognome: " +
-                utenteA.getCognome() + "   |ID UTENTE: " + utenteA.getIdUtente();
+                utenteA.getCognome() + "|";
     }
 
 }
