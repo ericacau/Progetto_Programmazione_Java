@@ -12,8 +12,9 @@ import java.util.*;
 
 */
 public class IngressiAbbonati extends Ingressi implements Serializable {
-    private UtenteAbbonato utenteA;
+
     static final long serialVersionUID = 1;
+    private UtenteAbbonato utenteA;
 
     public IngressiAbbonati(LocalDate data, UtenteAbbonato utenteA) {
         super(data);
@@ -32,9 +33,8 @@ public class IngressiAbbonati extends Ingressi implements Serializable {
         DateTimeFormatter formattaData = DateTimeFormatter.ofPattern("dd/M/yyyy");
         String dataStampa = this.getData().format(formattaData);
         return "|DATA INGRESSO: " + dataStampa + "\t" + "|Nome: " + utenteA.getNome() + "  |Cognome: " +
-                utenteA.getCognome() + "   |ID UTENTE: " + utenteA.getIdUtente();
+                utenteA.getCognome() + "|";
     }
-
 
 }
 

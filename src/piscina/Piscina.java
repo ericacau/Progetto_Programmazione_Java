@@ -2,19 +2,22 @@ package piscina;
 
 import java.util.*;
 import java.io.*;
-
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.stream.StreamSupport;
 
 public class Piscina {
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
-        //Creo un vettore che conterrà gli oggetti ingressi
-        //sarà manipolato dai metodi della classe GestionePiscina
-        //inizialmente riempito da un file preesistente; se non presente verrà notificato all'utente che il
-        //file non è presente e che potrà essere salvato in un secondo momento dopo aver aggiunto gli ingressi.
 
+            /*Creo un vettore che conterrà gli oggetti ingressi
+                * sarà manipolato dai metodi della classe GestionePiscina
+                * inizialmente riempito da un file preesistente; se non presente verrà notificato all'utente che il
+                    file non è presente e che potrà essere salvato in un secondo momento dopo aver aggiunto gli ingressi.*/
         Vector<Ingressi> vettoreIngressi = new Vector<Ingressi>();
         ObjectInputStream inputStream;
+
         String nomeFile = "ingressiPiscina";
 
         System.out.println("Benvenuto nel pannello di controllo degli ingressi della piscina \"La Sirena\"");
@@ -29,119 +32,119 @@ public class Piscina {
         } catch (FileNotFoundException e) {
             System.out.println("Non è presente un file di ingressi!");
         } catch (IOException e) {
+            System.out.println(e);
             System.out.println("Errore nella lettura del file di input: " + nomeFile);
         } catch (ClassNotFoundException e) {
             System.out.println("Errore nella lettura degli ingressi da file.");
         }
-        //creo un oggetto nuovoIngresso per usare i metodi sugli ingressi
-        GestionePiscina nuovoIngresso = new GestionePiscina(vettoreIngressi);
+        //creo un oggetto Ingresso per usare i metodi sugli ingressi
+
+        GestionePiscina Ingresso = new GestionePiscina(vettoreIngressi);
 
         //controllo se il vettore è vuoto. Se ha degli ingressi, accedo al menù
         //se non vi sono ingressi, procedo direttamente all'aggiunta di un nuovo ingresso
         if (vettoreIngressi.isEmpty()) {
             System.out.println("Procedi all'inserimento di un ingresso prima di accedere al menu'.");
-            nuovoIngresso.aggiungiIngresso();
+            Ingresso.aggiungiIngresso();
         } else {
             System.out.println("Il file di ingressi nella Piscina precedentemente salvato è stato caricato correttamente.");
         }
-        System.out.println("Ecco le possibili operazioni che puoi compiere.");
-        System.out.println("Che cosa vuoi fare?");
+        System.out.println("Ecco le possibili operazioni che puoi compiere:");
 
 
         /*-------MENU--------*/
-        //l'utente in base alla lettera scelta (da A a G), potrà effettuare le varie operazioni
-        //    sugli ingressi richiamando i metodi della classe GestionePiscina
-        char scelta;
+        //l'utente in base al numero scelto, potrà effettuare le varie operazioni
+        //sugli ingressi richiamando i metodi della classe GestionePiscina
+        int scelta;
         boolean menuAttivo = true;
         do {
-            System.out.println("A - Aggiungere un nuovo ingresso");
-            System.out.println("B - Visualizzare gli ingressi di un giorno specifico");
-            System.out.println("C - Visualizzare gli ingressi di un mese specifico");
-            System.out.println("D - Visualizzare gli ingressi di un utente abbonato");
-            System.out.println("E - Visualizzare gli incassi giornalieri di uno specifico mese");
-            System.out.println("F - Visualizzare l'elenco con il numero di ingressi in abbonamento giornalieri di uno specifico mese");
-            System.out.println("G - Visualizzare gli ingressi senza abbonamento e con riduzione di uno specifico mese");
-            System.out.println("H - Leggi gli ingressi inseriti su file");
-            System.out.println("S - Salva gli ingressi inseriti su file");
-            System.out.println("U - Uscita");
+            System.out.println("");
+            System.out.println("1 - Aggiungere un nuovo ingresso");
+            System.out.println("2 - Visualizzare gli ingressi di un giorno specifico");
+            System.out.println("3 - Visualizzare gli ingressi di un mese specifico");
+            System.out.println("4 - Visualizzare gli ingressi di un utente abbonato");
+            System.out.println("5 - Visualizzare gli incassi giornalieri di uno specifico mese");
+            System.out.println("6 - Visualizzare l'elenco con il numero di ingressi in abbonamento giornalieri di uno specifico mese");
+            System.out.println("7 - Leggi gli ingressi inseriti su file");
+            System.out.println("8 - Salva gli ingressi inseriti su file");
+            System.out.println("9 - Uscita");
             System.out.println("\nCosa vuoi fare?");
-            scelta = input.next().charAt(0);
             try {
+                scelta = input.nextInt();
                 switch (scelta) {
-                    case 'A':
-                    case 'a':
+                    case 1:
                         //invoco il metodo per aggiungere l'ingresso
-                        //ok!
-                        nuovoIngresso.aggiungiIngresso();
-                        nuovoIngresso.visualizzaIngresso();
+                        System.out.println("Stai aggiungendo un nuovo ingresso\nInserisci le informazioni che ti verranno richieste.");
+                        Ingresso.aggiungiIngresso();
+                       // Ingresso.visualizzaIngresso();
                         break;
-                    case 'B':
-                    case 'b':
+                    case 2:
+                        System.out.println("Stai visualizzando gli ingressi di uno specifico giorno");
                         //ingressi giorno specifico IN ORDINE
-                        //ok!
-                        nuovoIngresso.IngressiGiornalieri();
+                        Ingresso.IngressiGiornalieri();
                         break;
-                    case 'C':
-                    case 'c':
+                    case 3:
                         //ingressi mese specifico IN ORDINE
-                        //ok!
-                        nuovoIngresso.IngressiMensiliOrdinati();
+                        System.out.println("Stai visualizzando gli ingressi di un mese specifico");
+                        Ingresso.IngressiMensiliOrdinati();
                         break;
-                    case 'D':
-                    case 'd':
+                    case 4:
                         //ingressi specifico ABBONATO
-                        //ok!
-                        nuovoIngresso.IngressiUtenteAbbonato();
+                        System.out.println("Stai visualizzando gli ingressi di uno specifico utente abbonato");
+                        Ingresso.IngressiUtenteAbbonato();
                         break;
-                    case 'E':
-                    case 'e':
+                    case 5:
                         //elenco incassi giornalieri mese specifico
-                        //da scrivere
-                        nuovoIngresso.IncassiMensili();
+                        System.out.println("Stai visualizzando gli incassi dei biglietti venduti in uno specifico mese");
+                        Ingresso.IncassiMensili();
                         break;
-                    case 'F':
-                    case 'f':
+                    case 6:
                         // elenco con il numero degli ingressi in abbonamento giornalieri di uno specifico mese
-                        nuovoIngresso.IngressiAbbonatiMensili();
+                        System.out.println("Stai visualizzando il numero di ingressi di persone abbonate effettuati in uno specifico mese");
+                        Ingresso.IngressiAbbonatiMensili();
                         break;
-                    case 'G':
-                    case 'g':
-                        //ingressi con riduzione di uno specifico mese
-                        //da sistemare
-                        nuovoIngresso.IngressiRidotti();
+                    case 7:
+                        // Visualizzare tutti gli ingressi
+                        System.out.println("Stai visualizzando gli ingressi salvati.\n");
+                        Ingresso.visualizzaIngresso();
                         break;
-                    case 'H':
-                    case 'h':
-                        nuovoIngresso.visualizzaIngresso();
-                        System.out.println("\n");
-                        break;
-                    case 'S':
-                    case 's':
-                        System.out.println("Stai salvando le informazioni sugli ingressi...");
-                        try {
-                            ObjectOutputStream outputStream = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("ingressiPiscina")));
-                            outputStream.writeObject(vettoreIngressi);
-                            outputStream.close();
-                        } catch (FileNotFoundException e) {
-                            System.out.println("File non trovato");
-                        } catch (IOException e) {
-                            System.out.println("Errore nella scrittura del file");
-                        }
+                    case 8:
+                        System.out.println("Stai salvando le informazioni sugli ingressi...\n");
+                        salva(vettoreIngressi);
                         System.out.println("Gli ingressi sono stati salvati nel file " + nomeFile + "!");
                         break;
-                    case 'U':
-                    case 'u':
-                        System.out.println("Uscita in corso...");
+                    case 9:
                         System.out.println("Salvo le informazioni");
+                        salva(vettoreIngressi);
                         menuAttivo = false;
+                        System.out.println("Informazioni salvate.");
+                        System.out.println("Uscita effettuata.");
                         break;
                     default:
-                        System.out.println("Hai inserito un carattere errato");
+                        System.out.println("Errore nella digitazione");
+                        throw new InputMismatchException();
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Hai inserito un carattere errato");
+                System.out.println("Riprova ad inserire un numero da 1 a 10!");
+                input.next();
+            } catch (Exception e){
+                System.out.println("Errore!");
             }
         } while (menuAttivo);
         input.close();
+    }
+
+//metodo ausiliario per effettuare il salvataggio sul vettore
+    private static void salva(Vector v){
+        try {
+            ObjectOutputStream outputStream = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("ingressiPiscina")));
+            outputStream.writeObject(v);
+            outputStream.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("File non trovato");
+        } catch (IOException e) {
+            System.out.println("Errore nella scrittura del file");
+            System.out.println(e);
+        }
     }
 }
