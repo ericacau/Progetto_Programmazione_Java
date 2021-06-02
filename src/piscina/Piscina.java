@@ -128,7 +128,7 @@ public class Piscina {
                         throw new InputMismatchException();
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Riprova ad inserire un numero da 1 a 10!");
+                System.out.println("Riprova ad inserire un numero da 1 a 9!");
                 input.next();
             } catch (Exception e){
                 System.out.println("Errore!");
